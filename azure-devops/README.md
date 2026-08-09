@@ -30,7 +30,21 @@ el tablero poblado en menos de un minuto.
 
 ## Nota sobre el tipo de work item
 
-El CSV usa `Product Backlog Item` porque tu proyecto usa el proceso **Scrum** de Azure
-DevOps (se ve por la navegación "Backlogs / Sprints / Taskboard" en tu captura). Si tu
-proyecto en realidad usa el proceso **Agile**, cambia `Product Backlog Item` por
-`User Story` en el CSV antes de importar (Buscar y reemplazar en un editor de texto).
+El CSV usa `User Story` porque tu proyecto usa el proceso **Agile** de Azure DevOps (el
+error "Invalid work item type Product Backlog Item" confirma que NO es Scrum — en Scrum
+ese tipo sí existe, así que si diera ese error es porque tu proceso es otro).
+
+Si al importar te vuelve a salir "Invalid work item type User Story", tu proyecto usa un
+proceso distinto. Para confirmarlo: **Project Settings** (abajo a la izquierda) →
+**Process** → verás el nombre exacto (Agile, Scrum, Basic o CMMI). Según cuál sea,
+reemplaza `User Story` en el CSV por:
+
+| Proceso | Tipo de work item a usar |
+|---|---|
+| Agile | `User Story` (ya está así) |
+| Scrum | `Product Backlog Item` |
+| Basic | `Issue` |
+| CMMI | `Requirement` |
+
+Para reemplazar: abre `ginesalud_backlog.csv` en un editor de texto y usa buscar y
+reemplazar (la palabra aparece al inicio de cada una de las 13 líneas de datos).
