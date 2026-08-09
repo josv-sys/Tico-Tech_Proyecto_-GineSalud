@@ -9,7 +9,6 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta,shapes.geometric,shapes.multipart}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -17,30 +16,8 @@
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{enumitem}
-\usepackage{titlesec}
-
-% ===================== TIPOGRAFIA ESTILO ARIAL =====================
-% pdflatex no incluye Arial real (es una fuente de Microsoft), pero Helvetica
-% (via el paquete helvet) es metricamente compatible y visualmente casi
-% identica -- es el sustituto estandar de Arial en LaTeX con pdflatex.
-\usepackage[scaled=0.95]{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-
-% ===================== PALETA DE COLOR =====================
-\definecolor{brandteal}{HTML}{0E7C86}      % color principal (titulos, reglas)
-\definecolor{brandtealLight}{HTML}{DCEFEF} % fondo de encabezados de tabla
-\definecolor{brandamber}{HTML}{F2A93B}     % color de acento secundario
-
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=brandteal, urlcolor=brandteal, citecolor=brandteal}
-
-% Titulos de seccion con color y regla debajo
-\titleformat{\section}
-  {\normalfont\Large\bfseries\color{brandteal}}{\thesection}{0.8em}{}[{\color{brandteal!60}\titlerule[1pt]}]
-\titleformat{\subsection}
-  {\normalfont\large\bfseries\color{brandteal}}{\thesubsection}{0.8em}{}
-\titlespacing*{\section}{0pt}{1.4em}{0.8em}
-\titlespacing*{\subsection}{0pt}{1.1em}{0.6em}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
 
 % ===================== COMANDO PARA PLACEHOLDERS DE IMAGEN =====================
 % Uso: \placeholderimg{ancho}{alto}{Texto/etiqueta de la figura}
@@ -64,20 +41,6 @@
   \end{tikzpicture}
 }
 
-% ===================== FIGURA DE ACTOR (muñeco UML) =====================
-% Uso dentro de un tikzpicture: \actor{(x,y)}{Etiqueta}
-\newcommand{\actor}[2]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick] (0,0.55) circle (0.18);
-    \draw[thick] (0,0.37) -- (0,-0.15);
-    \draw[thick] (0,0.2) -- (-0.28,-0.05);
-    \draw[thick] (0,0.2) -- (0.28,-0.05);
-    \draw[thick] (0,-0.15) -- (-0.22,-0.55);
-    \draw[thick] (0,-0.15) -- (0.22,-0.55);
-    \node[align=center, font=\small, below=2pt] at (0,-0.6) {#2};
-  \end{scope}
-}
-
 \title{}
 \date{}
 
@@ -89,17 +52,14 @@
     \vspace*{1.5cm}
 
     % --- PLACEHOLDER LOGO UNIVERSIDAD ---
-    % Reemplazar por: \includegraphics[width=4cm]{logo_upi.png}
-    \logoplaceholder[4cm]
+    % Reemplazar por: \includegraphics[width=4cm]{upi_logo.png}
+    \includegraphics[width=10cm]{upi_logo.png}
 
     \vspace{0.5cm}
-    {\LARGE\bfseries\color{brandteal} Universidad\\Politécnica\\Internacional\par}
+    {\LARGE\bfseries Universidad\\Politécnica\\Internacional\par}
 
-    \vspace{0.6cm}
-    {\color{brandamber}\rule{6cm}{1.4pt}\par}
-
-    \vspace{1.6cm}
-    {\bfseries\large\color{brandteal} Análisis de Sistemas I\par}
+    \vspace{2cm}
+    {\bfseries\large Análisis de Sistemas I\par}
 
     \vspace{2cm}
     {\large Proyecto Final\par}
@@ -185,7 +145,7 @@ A continuación se muestran los roles de SCRUM de este proyecto.
 
 \begin{xltabular}{\textwidth}{|p{2.8cm}|p{3.2cm}|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Rol} & \textbf{Responsable} & \textbf{Función} \\
 \hline
 \endhead
@@ -209,17 +169,17 @@ Completado y Atrasado. Y la prioridad Baja, Media y Alta.
 \setlength{\tabcolsep}{3pt}
 \begin{xltabular}{\textwidth}{|X|p{1.6cm}|p{1.5cm}|p{1.5cm}|p{1.1cm}|p{1.5cm}|p{1.3cm}|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Nombre de la tarea} & \textbf{Asignada a} & \textbf{Fecha inicio} & \textbf{Fecha fin} & \textbf{Duración (días)} & \textbf{Estado} & \textbf{Prioridad} & \textbf{Comentarios} \\
 \hline
 \endhead
- & & & & 0 & \cellcolor{brandteal!25}Sin iniciar & \cellcolor{brandamber!35}Bajo & \\
+ & & & & 0 & \cellcolor{cyan!30}Sin iniciar & \cellcolor{green!20}Bajo & \\
 \hline
- & & & & 0 & \cellcolor{brandteal!25}En curso & \cellcolor{brandamber!35}Alta & \\
+ & & & & 0 & \cellcolor{cyan!30}En curso & \cellcolor{green!20}Alta & \\
 \hline
- & & & & 0 & \cellcolor{brandteal!25}Completado & \cellcolor{brandamber!35}Media & \\
+ & & & & 0 & \cellcolor{cyan!30}Completado & \cellcolor{green!20}Media & \\
 \hline
- & & & & 0 & \cellcolor{brandteal!25}Atrasado & \cellcolor{brandamber!35}Alta & \\
+ & & & & 0 & \cellcolor{cyan!30}Atrasado & \cellcolor{green!20}Alta & \\
 \hline
 \caption{Tablero de Monitoreo SCRUM}
 \end{xltabular}
@@ -244,7 +204,7 @@ El Product Backlog para este proyecto es el siguiente:
 
 \begin{xltabular}{\textwidth}{|c|X|c|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Orden} & \textbf{Elemento del Backlog} & \textbf{Prioridad} \\
 \hline
 \endhead
@@ -326,7 +286,7 @@ las diferentes actividades de análisis, diseño, planificación y documentació
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.6cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
 \hline
 \endhead
@@ -349,7 +309,7 @@ planificación de los Sprints y la asignación de tareas durante el desarrollo d
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
 \hline
 \endhead
@@ -394,30 +354,13 @@ La base de datos será preparada para permitir la conexión con Tableau, desde d
 podrán construir dashboards e indicadores para apoyar la toma de decisiones de la
 administración de GineSalud mediante el análisis de información en tiempo real.
 
-\begin{center}
-\begin{tikzpicture}[
-  box/.style={draw, rounded corners, minimum width=7cm, minimum height=1.1cm, align=center, font=\small},
-  smallbox/.style={draw, rounded corners, minimum width=3.3cm, minimum height=1cm, align=center, font=\small},
-  arrow/.style={-{Latex[length=2.5mm]}, thick},
-  node distance=0.6cm
-]
-\node[box, fill=brandteal!12] (usuarios) {Usuarios\\\footnotesize Recepcionista -- Ginecólogo -- Administrador};
-\node[box, fill=brandteal!22, below=of usuarios] (web) {Capa de Presentación\\\footnotesize Interfaz Web (Django + Bootstrap)};
-\node[box, fill=brandteal!32, below=of web] (logica) {Capa de Lógica de Negocio\\\footnotesize Pacientes -- Citas -- Expedientes -- Permisos};
-\node[box, fill=brandteal!42, below=of logica] (bd) {Capa de Datos\\\footnotesize Base de datos PostgreSQL};
-\node[smallbox, fill=brandamber!25, below=1.3cm of bd, xshift=-2.1cm] (tableau) {Tableau\\\footnotesize (representar datos)};
-\node[smallbox, fill=brandamber!25, below=1.3cm of bd, xshift=2.1cm] (powerbi) {Power BI / Power Apps\\\footnotesize (ingresar datos)};
-
-\draw[arrow] (usuarios) -- (web);
-\draw[arrow] (web) -- (logica);
-\draw[arrow] (logica) -- (bd);
-\draw[arrow] (bd.south) -- ++(0,-0.35) -| (tableau.north);
-\draw[arrow] (bd.south) -- ++(0,-0.35) -| (powerbi.north);
-\end{tikzpicture}
-
-\vspace{0.2cm}
-{\small\itshape Figura 1. Arquitectura del sistema GineSalud (cliente-servidor de 3 capas)}
-\end{center}
+% --- PLACEHOLDER FIGURA 1 ---
+% Reemplazar por: 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura1_arquitectura.png}
+    \caption{Figura 1. Propuesta minimalista de la Arquitectura del Sistema}
+\end{figure}
 
 \subsubsection*{Primeros diagramas UML}
 
@@ -425,44 +368,12 @@ administración de GineSalud mediante el análisis de información en tiempo rea
 Este diagrama muestra quiénes usarán el sistema y qué acciones principales podrán
 realizar, basándose directamente en las Historias de Usuario vistas anteriormente.
 
-\begin{center}
-\begin{tikzpicture}[
-  uc/.style={ellipse, draw, fill=brandteal!12, minimum width=5.6cm, minimum height=1cm, align=center, font=\small},
-  conn/.style={thick}
-]
-% Limite del sistema
-\draw[rounded corners, thick] (3.0,-0.9) rectangle (10.0,9.5);
-\node[font=\bfseries\small] at (6.5,9.1) {Sistema GineSalud};
-
-% Casos de uso
-\node[uc] (uc1) at (6.5,8.1) {Registrar y buscar\\pacientes};
-\node[uc] (uc2) at (6.5,6.75) {Gestionar citas\\médicas};
-\node[uc] (uc3) at (6.5,5.4) {Consultar y actualizar\\expediente clínico};
-\node[uc] (uc4) at (6.5,4.05) {Recibir recordatorios\\de citas};
-\node[uc] (uc5) at (6.5,2.7) {Administrar usuarios\\y permisos};
-\node[uc] (uc6) at (6.5,1.35) {Visualizar reportes\\e indicadores};
-\node[uc] (uc7) at (6.5,0.0) {Gestionar catálogos\\vía Power Apps};
-
-% Actores
-\actor{(0,7.4)}{Recepcionista}
-\actor{(0,5.4)}{Ginecólogo}
-\actor{(13,4.0)}{Paciente}
-\actor{(13,1.3)}{Administrador}
-
-% Conexiones
-\draw[conn] (0,7.4) -- (uc1.west);
-\draw[conn] (0,7.4) -- (uc2.west);
-\draw[conn] (0,5.4) -- (uc2.west);
-\draw[conn] (0,5.4) -- (uc3.west);
-\draw[conn] (13,4.0) -- (uc4.east);
-\draw[conn] (13,1.3) -- (uc5.east);
-\draw[conn] (13,1.3) -- (uc6.east);
-\draw[conn] (13,1.3) -- (uc7.east);
-\end{tikzpicture}
-
-\vspace{0.2cm}
-{\small\itshape Figura 2. Diagrama de casos de uso del sistema GineSalud}
-\end{center}
+% --- PLACEHOLDER FIGURA 2 ---
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura2_casos_uso.png}
+    \caption{Figura 2. Primer diagrama de casos de uso del sistema}
+\end{figure}
 
 % --------------------- SEMANA 2 ---------------------
 \subsection{Semana 2}
@@ -580,9 +491,11 @@ Atrasado, permitiendo visualizar el flujo de trabajo del equipo. Además, Azure 
 facilitará el seguimiento de tareas relacionadas con el análisis de requisitos, diseño de base
 de datos, elaboración de diagramas UML, arquitectura del sistema e integración con Tableau.
 
-% --- PLACEHOLDER CAPTURA TABLERO AZURE DEVOPS ---
-% Reemplazar por: \includegraphics[width=0.9\textwidth]{tablero_azure_devops.png}
-\placeholderimg{12}{7}{Captura del tablero Azure Boards con el Sprint actual}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{tablero_azure_devops.png}
+    \caption{Captura del tablero Azure Boards con el Sprint actual}
+\end{figure}
 
 % --------------------- SEMANA 3 ---------------------
 \subsection{Semana 3}
@@ -635,42 +548,11 @@ médica''}, mostrando el flujo desde que la recepcionista busca a la paciente, v
 disponibilidad del especialista, registra la cita y el sistema genera la confirmación
 correspondiente.
 
-\begin{center}
-\begin{tikzpicture}[
-  act/.style={draw, rounded corners, fill=brandteal!12, minimum width=6.4cm, minimum height=0.9cm, align=center, font=\small},
-  side/.style={draw, rounded corners, fill=brandamber!18, minimum width=4.6cm, minimum height=0.9cm, align=center, font=\small},
-  dec/.style={draw, shape=diamond, fill=white, minimum width=2.6cm, minimum height=1.3cm, align=center, font=\scriptsize, inner sep=1pt},
-  lbl/.style={font=\scriptsize, fill=white, inner sep=1pt},
-  arr/.style={-{Latex[length=2.2mm]}, thick}
-]
-\node[circle, fill=black, minimum size=0.28cm] (start) at (0,11) {};
-\node[act] (a1) at (0,10) {Buscar paciente por nombre o cédula};
-\node[dec] (d1) at (0,8.6) {¿Paciente\\registrada?};
-\node[side] (s1) at (4.2,8.6) {Registrar nueva paciente};
-\node[act] (a2) at (0,7.2) {Verificar disponibilidad del médico};
-\node[dec] (d2) at (0,5.8) {¿Horario\\disponible?};
-\node[side] (s2) at (4.2,5.8) {Elegir otro horario o médico};
-\node[act] (a3) at (0,4.4) {Registrar la cita en el sistema};
-\node[act] (a4) at (0,3.3) {Confirmar cita y notificar a la paciente};
-\node[circle, draw, thick, minimum size=0.32cm] (endc) at (0,2.1) {};
-\node[circle, fill=black, minimum size=0.16cm] at (0,2.1) {};
-
-\draw[arr] (start) -- (a1);
-\draw[arr] (a1) -- (d1);
-\draw[arr] (d1) -- (a2) node[lbl, midway, left] {Sí};
-\draw[arr] (d1) -- (s1) node[lbl, midway, above] {No};
-\draw[arr] (s1) |- (a2.east);
-\draw[arr] (a2) -- (d2);
-\draw[arr] (d2) -- (a3) node[lbl, midway, left] {Sí};
-\draw[arr] (d2) -- (s2) node[lbl, midway, above] {No};
-\draw[arr] (s2) |- (a3.east);
-\draw[arr] (a3) -- (a4);
-\draw[arr] (a4) -- (endc);
-\end{tikzpicture}
-
-\vspace{0.2cm}
-{\small\itshape Figura 3. Diagrama de actividad -- Registrar y confirmar cita médica}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura3_diagrama_actividad.png}
+    \caption{Figura 3. Diagrama de actividad -- Registrar y confirmar cita médica}
+\end{figure}
 
 \paragraph{Diagrama de Clases}
 Se define el diagrama de clases que sustentará el modelo de la base de datos, integrando
@@ -682,40 +564,11 @@ relaciones principales son: un \textit{Paciente} posee un \textit{ExpedienteClin
 \textit{Cita} relaciona a un \textit{Paciente} con un \textit{Medico} en una \textit{Especialidad}
 determinada; y un \textit{Usuario} tiene asignado un \textit{Rol} que determina sus permisos.
 
-\begin{center}
-\begin{tikzpicture}[
-  class/.style={rectangle split, rectangle split parts=2, draw, fill=brandtealLight, text width=2.7cm, font=\tiny, align=center},
-  rel/.style={thick},
-  card/.style={font=\tiny, fill=white, inner sep=1pt}
-]
-% Fila 1
-\node[class] (rol) at (0,9.5) {\textbf{Rol}\nodepart{second}id\_rol\\nombre\_rol};
-\node[class] (usuario) at (3.4,9.5) {\textbf{Usuario}\nodepart{second}id\_usuario\\nombre\_usuario\\id\_rol};
-\node[class] (especialidad) at (7.4,9.5) {\textbf{Especialidad}\nodepart{second}id\_especialidad\\nombre\_especialidad};
-\node[class] (medico) at (10.8,9.5) {\textbf{Medico}\nodepart{second}id\_medico\\nombre\_completo\\id\_especialidad};
-
-% Fila 2
-\node[class] (expediente) at (0,6.3) {\textbf{ExpedienteClinico}\nodepart{second}id\_expediente\\id\_paciente};
-\node[class] (paciente) at (3.4,6.3) {\textbf{Paciente}\nodepart{second}id\_paciente\\nombre\_completo\\cedula};
-\node[class] (cita) at (7.4,6.3) {\textbf{Cita}\nodepart{second}id\_cita\\id\_paciente\\id\_medico\\estado};
-
-% Fila 3
-\node[class] (diagnostico) at (0,3.1) {\textbf{Diagnostico}\nodepart{second}id\_diagnostico\\id\_expediente\\id\_medico};
-\node[class] (tratamiento) at (3.4,3.1) {\textbf{Tratamiento}\nodepart{second}id\_tratamiento\\id\_diagnostico};
-
-% Relaciones
-\draw[rel] (usuario) -- (rol) node[card, midway, above] {N -- 1};
-\draw[rel] (medico) -- (especialidad) node[card, midway, above] {N -- 1};
-\draw[rel] (paciente) -- (expediente) node[card, midway, above] {1 -- 1};
-\draw[rel] (cita) -- (paciente) node[card, midway, above] {N -- 1};
-\draw[rel] (cita.north) -- (medico.south) node[card, midway, right] {N -- 1};
-\draw[rel] (expediente) -- (diagnostico) node[card, midway, right] {1 -- N};
-\draw[rel] (diagnostico) -- (tratamiento) node[card, midway, above] {1 -- N};
-\end{tikzpicture}
-
-\vspace{0.2cm}
-{\small\itshape Figura 4. Diagrama de clases del sistema GineSalud}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura4_diagrama_clases.png}
+    \caption{Figura 4. Diagrama de clases del sistema GineSalud}
+\end{figure}
 
 \paragraph{Diagrama de Despliegue}
 El diagrama de despliegue representa la distribución física de los componentes: un
@@ -725,27 +578,11 @@ y administradores, y los servicios en la nube de Tableau y Power BI, ambos conec
 servidor de base de datos mediante conectores nativos/ODBC para consumir y, en el caso
 de Power BI/Power Apps, también escribir información.
 
-\begin{center}
-\begin{tikzpicture}[
-  devnode/.style={draw, thick, rounded corners, fill=brandteal!12, minimum width=4.4cm, minimum height=1.3cm, align=center, font=\small},
-  smallnode/.style={draw, thick, rounded corners, fill=brandamber!20, minimum width=3.6cm, minimum height=1.1cm, align=center, font=\small},
-  arr/.style={-{Latex[length=2.2mm]}, thick}
-]
-\node[devnode] (cliente) at (0,7.6) {\footnotesize «dispositivo»\\\textbf{Cliente}\\Navegador web};
-\node[devnode] (app) at (0,5.6) {\footnotesize «servidor»\\\textbf{Servidor de Aplicaciones}\\Django (Python)};
-\node[devnode] (db) at (0,3.6) {\footnotesize «servidor»\\\textbf{Servidor de Base de Datos}\\PostgreSQL};
-\node[smallnode] (tableau) at (-2.7,1.3) {\footnotesize «servicio en la nube»\\\textbf{Tableau Cloud}};
-\node[smallnode] (powerbi) at (2.7,1.3) {\footnotesize «servicio en la nube»\\\textbf{Power BI / Power Apps}};
-
-\draw[arr] (cliente) -- (app) node[midway, right, font=\scriptsize] {HTTPS};
-\draw[arr] (app) -- (db) node[midway, right, font=\scriptsize] {SQL};
-\draw[arr] (db.south) -- ++(0,-0.4) -| (tableau.north) node[pos=0.7, above, font=\scriptsize] {ODBC (lectura)};
-\draw[arr] (db.south) -- ++(0,-0.4) -| (powerbi.north) node[pos=0.7, above, font=\scriptsize] {ODBC (lectura/escritura)};
-\end{tikzpicture}
-
-\vspace{0.2cm}
-{\small\itshape Figura 5. Diagrama de despliegue del sistema GineSalud}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura5_diagrama_despliegue.png}
+    \caption{Figura 5. Diagrama de despliegue del sistema GineSalud}
+\end{figure}
 
 \subsubsection*{Historia de Usuario adicional}
 
@@ -763,7 +600,7 @@ PostgreSQL y cubren necesidades complementarias del proyecto.
 
 \begin{xltabular}{\textwidth}{|p{2.6cm}|X|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Criterio} & \textbf{Tableau} & \textbf{Power BI} \\
 \hline
 \endhead
@@ -803,7 +640,7 @@ confirmarse con los sitios oficiales de cada proveedor antes de la entrega final
 
 \begin{xltabular}{\textwidth}{|p{2.8cm}|X|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Herramienta} & \textbf{Licencia} & \textbf{Costo referencial} \\
 \hline
 \endhead
@@ -825,7 +662,7 @@ las horas adicionales de análisis e integración correspondientes a Power BI y 
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.6cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
 \hline
 \endhead
@@ -857,7 +694,7 @@ proyecto mediante el método de la ruta crítica (CPM).
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.7cm}|p{2.6cm}|>{\centering\arraybackslash}p{1.8cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Tarea} & \textbf{Horas} & \textbf{Duración (días)} & \textbf{Predecesora} & \textbf{¿Ruta crítica?} \\
 \hline
 \endhead
@@ -877,7 +714,7 @@ semanas de trabajo efectivo). Estas tareas no cuentan con holgura, por lo que cu
 atraso en ellas impactará directamente la fecha de finalización del proyecto. Las tareas T2
 y T7 cuentan con holgura respecto a sus rutas paralelas (T3 y T6, respectivamente), mientras
 que T5 se ejecuta de forma transversal durante todo el proyecto y no condiciona la ruta
-crítica. La Tabla 9 anterior documenta completamente la ruta crítica (tareas, duración y
+crítica. La tabla anterior documenta completamente la ruta crítica (tareas, duración y
 dependencias), por lo que no se elabora un diagrama de red/Gantt adicional.
 
 \subsubsection*{Estimación más precisa de tiempos y recursos}
@@ -888,7 +725,7 @@ es un recurso externo de GineSalud y no forma parte de esta distribución de hor
 
 \begin{xltabular}{\textwidth}{|p{3.4cm}|X|>{\centering\arraybackslash}p{1.6cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Integrante} & \textbf{Actividades asignadas} & \textbf{Horas} \\
 \hline
 \endhead
@@ -906,7 +743,7 @@ Historia de Usuario 13, definida durante la Semana 3.
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
 \hline
 \endhead
@@ -924,7 +761,7 @@ herramientas de integración (Tableau y Power BI/Power Apps).
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|X|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Riesgo} & \textbf{Probabilidad} & \textbf{Impacto} & \textbf{Mitigación} & \textbf{Plan de contingencia} \\
 \hline
 \endhead
@@ -950,7 +787,7 @@ planteados por GineSalud una vez puesto en funcionamiento.
 
 \begin{xltabular}{\textwidth}{|p{3.4cm}|X|p{2.8cm}|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Métrica} & \textbf{Descripción} & \textbf{Meta objetivo} \\
 \hline
 \endhead
@@ -1008,7 +845,7 @@ PostgreSQL 18 real.
 
 \begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.6cm}|X|X|}
 \hline
-\rowcolor{brandtealLight}
+\rowcolor{gray!20}
 \textbf{Caso de prueba} & \textbf{Tipo} & \textbf{Resultado esperado} & \textbf{Resultado obtenido} \\
 \hline
 \endhead
@@ -1063,9 +900,11 @@ se conecten las herramientas de escritorio, el dashboard de Tableau) y el video 
 demostración se incorporan como evidencia visual en el documento final y en el
 repositorio del proyecto.
 
-% --- PLACEHOLDER FIGURA 6 ---
-% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura6_captura_prototipo.png}
-\placeholderimg{12}{7}{Figura 6. Captura del prototipo funcional (base de datos y dashboards)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figura6_captura_prototipo.png}
+    \caption{Figura 6. Captura del prototipo funcional (tablas en pgAdmin y mockup de Power BI/Power Apps)}
+\end{figure}
 
 % ===================== CONCLUSIONES =====================
 \section{Conclusiones}
@@ -1135,8 +974,7 @@ posterior y facilita la comunicación entre el equipo consultor (Tico Tech) y el
     \item Asamblea Legislativa de la República de Costa Rica. (2011). \textit{Ley N.°
     8968, Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales}.
 
-    \item Mata Guerrero, J. J. (2026). \textit{Proyecto -- Análisis de Sistemas 1}
-    [Instrucciones de curso]. Universidad Politécnica Internacional.
+    
 \end{itemize}
 
 \end{document}
