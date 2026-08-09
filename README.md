@@ -68,23 +68,23 @@ Si GitHub Pages está activado en este repositorio (`Settings` → `Pages`, rama
 
 ## Placeholders que faltan en el `.tex` antes de compilar el PDF final
 
-| # | Placeholder | Cómo resolverlo |
-|---|---|---|
-| 1 | Logo de la Universidad (portada) | Agregar el logo real de UPI como imagen |
-| 2 | Figura 1 — Arquitectura del sistema | Diagrama de cajas (Presentación / Lógica / Datos / Tableau-PowerBI) |
-| 3 | Figura 2 — Diagrama de casos de uso | UML: actores Recepcionista/Ginecólogo/Administrador + HU1-HU13 |
-| 4 | Captura del tablero Azure Boards | Screenshot real del Sprint en Azure DevOps |
-| 5 | Figura 3 — Diagrama de actividad | Flujo "Registrar y confirmar cita médica" |
-| 6 | Figura 4 — Diagrama de clases | Entidades del `01_schema.sql` (Paciente, Cita, Médico, etc.) |
-| 7 | Figura 5 — Diagrama de despliegue | Cliente / Servidor Django / PostgreSQL / Tableau / Power BI |
-| 8 | Figura 6 — Diagrama de red/Gantt de la ruta crítica | Basado en la Tabla de ruta crítica (T1→T3→T4→T6, Semana 4) |
-| 9 | Figura 7 — Mockups de interfaz | Wireframes de registro de paciente, agenda, expediente |
-| 10 | Figura 8 — Captura del prototipo funcional | Screenshot de pgAdmin (tablas de `ginesalud`) + del mockup de Power BI/Power Apps |
+Se recortaron los 2 placeholders no esenciales (Gantt de ruta crítica y mockups de
+interfaz — ver el commit "Rediseño visual" para el detalle de por qué). Quedan **8**:
 
-> Los placeholders 1, 4, 9 y 10 solo necesitan una imagen/screenshot real (no requieren
-> diseño nuevo — el 10 ya se puede tomar ahora mismo desde pgAdmin y desde el mockup
-> publicado arriba). Los placeholders 2, 3, 5, 6, 7 y 8 requieren dibujar el diagrama
-> correspondiente (a mano, en draw.io/Lucidchart, o generado en LaTeX/TikZ).
+| # | Placeholder | Tipo | Cómo resolverlo |
+|---|---|---|---|
+| 1 | Logo de la Universidad (portada) | Captura/asset | Agregar el logo real de UPI como imagen |
+| 2 | Figura 1 — Arquitectura del sistema | Diagrama | Cajas: Presentación / Lógica / Datos / Tableau-PowerBI |
+| 3 | Figura 2 — Diagrama de casos de uso | Diagrama | UML: actores Recepcionista/Ginecólogo/Administrador + HU1-HU13 |
+| 4 | Captura del tablero Azure Boards | **Captura (SS)** | Screenshot real del Sprint en Azure DevOps, una vez importado el backlog |
+| 5 | Figura 3 — Diagrama de actividad | Diagrama | Flujo "Registrar y confirmar cita médica" |
+| 6 | Figura 4 — Diagrama de clases | Diagrama | Entidades del `01_schema.sql` (Paciente, Cita, Médico, etc.) |
+| 7 | Figura 5 — Diagrama de despliegue | Diagrama | Cliente / Servidor Django / PostgreSQL / Tableau / Power BI |
+| 8 | Figura 6 — Captura del prototipo funcional | **Captura (SS)** | Screenshot de pgAdmin (tablas de `ginesalud`) + del mockup de Power BI/Power Apps |
+
+> Solo el **1, 4 y 8 son capturas** (SS) de algo que ya existe — no requieren diseño
+> nuevo. El resto (2, 3, 5, 6, 7) son diagramas que hay que dibujar (a mano, en
+> draw.io/Lucidchart, o generados en LaTeX/TikZ).
 
 ## Próximos pasos sugeridos
 
