@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
+\renewcommand{\tablename}{Tabla} % fuerza "Tabla N" (algunas variantes de babel-spanish usan "Cuadro")
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{textcomp}
@@ -91,8 +92,10 @@ herramientas que faciliten el análisis y la toma de decisiones estratégicas.
 Como equipo de análisis y arquitectura de sistemas, se nos ha encomendado la
 planificación y diseño de una base de datos desarrollada desde cero, capaz de responder a
 las necesidades actuales y futuras de la empresa. Además, la solución deberá quedar
-preparada para su integración con Tableau, permitiendo la generación de reportes,
-indicadores y paneles de control que apoyen el análisis de la información en tiempo real.
+preparada para su integración con \textbf{Tableau} y \textbf{Power BI/Power Apps},
+permitiendo la generación de reportes, indicadores y paneles de control que apoyen el
+análisis de la información en tiempo real, así como el ingreso y mantenimiento de
+catálogos administrativos.
 
 Para alcanzar este objetivo, será necesario realizar un análisis completo del negocio,
 identificar los requerimientos funcionales y no funcionales, definir la arquitectura del
@@ -787,7 +790,9 @@ Dado que este es un curso de análisis de sistemas y no de desarrollo completo, 
 del prototipo funcional de la Semana 5 se definió como la implementación del modelo de
 datos relacional en PostgreSQL derivado del diagrama de clases de la Semana 3, junto con
 las vistas de integración hacia Tableau y Power BI. Los archivos del prototipo se encuentran
-versionados en el repositorio del proyecto, en las carpetas \texttt{/sql} y \texttt{/bi}.
+versionados en el repositorio del proyecto, en la carpeta \texttt{/sql}; el diseño de
+referencia de Power BI y Power Apps se encuentra en la carpeta
+\texttt{Diseño Power BI y Power Apps GineSalud/}.
 
 \subsubsection*{Desarrollo del prototipo funcional}
 
@@ -803,8 +808,7 @@ Se implementaron tres scripts de PostgreSQL:
     para validar el prototipo.
     \item \texttt{sql/03\_views\_bi.sql}: crea las vistas \textit{vw\_citas\_resumen},
     \textit{vw\_indicadores\_especialidad} y \textit{vw\_especialidades\_catalogo},
-    utilizadas como fuente de datos por Tableau y Power BI respectivamente (ver
-    \texttt{bi/tableau/README.md} y \texttt{bi/powerbi/README.md}).
+    utilizadas como fuente de datos por Tableau y Power BI respectivamente.
 \end{itemize}
 
 Como ejemplo de regla de negocio aplicada directamente en la base de datos, la tabla
@@ -817,9 +821,10 @@ CONSTRAINT uq_medico_horario UNIQUE (id_medico, fecha_cita, hora_cita)
 
 \subsubsection*{Pruebas iniciales}
 
-Se definieron los siguientes casos de prueba unitarios y de integración sobre el prototipo.
-Los resultados obtenidos deberán completarse al ejecutar los scripts en un entorno
-PostgreSQL real, siguiendo los pasos descritos en \texttt{prototipo/README.md}.
+Se definieron y ejecutaron los siguientes casos de prueba unitarios y de integración sobre
+el prototipo, corriendo en orden los scripts \texttt{sql/01\_schema.sql} →
+\texttt{sql/02\_seed\_data.sql} → \texttt{sql/03\_views\_bi.sql} contra una base de datos
+PostgreSQL 18 real.
 
 \begin{longtable}{|p{4cm}|p{1.6cm}|p{4cm}|p{3.4cm}|}
 \hline
@@ -854,8 +859,7 @@ de \textit{consulta en vivo} directamente sobre la base de datos operativa, las 
 los dashboards podrían competir con las operaciones diarias de la clínica (registro de citas
 y expedientes) en horas de alta demanda. Por ello, se recomienda el uso de
 \textbf{extractos programados} (Tableau \textit{Hyper extracts} y actualización periódica del
-dataset en Power BI) en lugar de conexión en vivo permanente, según lo documentado en los
-README de \texttt{/bi}.
+dataset en Power BI) en lugar de conexión en vivo permanente.
 
 \subsubsection*{Mejoras en el diseño de la interfaz de usuario}
 
@@ -869,10 +873,17 @@ el personal de recepción y la visibilidad rápida del historial clínico para l
 
 \subsubsection*{Evidencia del prototipo}
 
-Las capturas de pantalla del prototipo (tablas creadas, dashboard de Tableau, reporte de
-Power BI y formulario de Power Apps) y el video corto de demostración se incorporarán en
-la carpeta \texttt{/prototipo} del repositorio, según el detalle pendiente listado en
-\texttt{prototipo/README.md}.
+El diseño de referencia del dashboard de Power BI y del formulario de Power Apps (HU13)
+ya se encuentra construido y disponible en la carpeta
+\texttt{Diseño Power BI y Power Apps GineSalud/} del repositorio del proyecto, publicado
+además mediante GitHub Pages en:
+
+\url{https://josv-sys.github.io/Tico-Tech_Proyecto_-GineSalud/Dise%C3%B1o%20Power%20BI%20y%20Power%20Apps%20GineSalud/}
+
+Las capturas de pantalla adicionales del prototipo (tablas creadas en PostgreSQL y, cuando
+se conecten las herramientas de escritorio, el dashboard de Tableau) y el video corto de
+demostración se incorporan como evidencia visual en el documento final y en el
+repositorio del proyecto.
 
 % --- PLACEHOLDER FIGURA 8 ---
 % Reemplazar por: \includegraphics[width=0.9\textwidth]{figura8_captura_prototipo.png}
