@@ -12,6 +12,7 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
+\usepackage{xltabular} % tablas multi-pagina con columnas X que se ajustan al ancho de pagina
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{enumitem}
@@ -142,7 +143,7 @@ etapas del proyecto.
 
 A continuación se muestran los roles de SCRUM de este proyecto.
 
-\begin{longtable}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{7.5cm}|}
+\begin{xltabular}{\textwidth}{|p{2.8cm}|p{3.2cm}|X|}
 \hline
 \rowcolor{gray!20}
 \textbf{Rol} & \textbf{Responsable} & \textbf{Función} \\
@@ -155,7 +156,7 @@ Scrum Master & Líder de Proyecto de Tico Tech & Facilita la implementación de 
 Equipo de Desarrollo & Cuatro consultores de Tico Tech & Analizan los requerimientos, diseñan la solución, elaboran la documentación, desarrollan los modelos de datos y preparan la integración con Tableau. \\
 \hline
 \caption{Roles SCRUM del proyecto}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Tablero SCRUM}
 
@@ -163,10 +164,13 @@ Seguidamente se muestra el tablero que se utilizará para organizar y monitorear
 de las actividades del proyecto. El estado puede ser Sin iniciar, En curso, En revisión,
 Completado y Atrasado. Y la prioridad Baja, Media y Alta.
 
-\begin{longtable}{|p{2cm}|p{1.7cm}|p{1.6cm}|p{1.6cm}|p{1.1cm}|p{1.6cm}|p{1.3cm}|p{1.8cm}|}
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{xltabular}{\textwidth}{|X|p{1.6cm}|p{1.5cm}|p{1.5cm}|p{1.1cm}|p{1.5cm}|p{1.3cm}|X|}
 \hline
 \rowcolor{gray!20}
-\textbf{Nombre de la tarea} & \textbf{Asignada a} & \textbf{Fecha de inicio} & \textbf{Fecha de finalización} & \textbf{Duración (días)} & \textbf{Estado} & \textbf{Prioridad} & \textbf{Comentarios} \\
+\textbf{Nombre de la tarea} & \textbf{Asignada a} & \textbf{Fecha inicio} & \textbf{Fecha fin} & \textbf{Duración (días)} & \textbf{Estado} & \textbf{Prioridad} & \textbf{Comentarios} \\
 \hline
 \endhead
  & & & & 0 & \cellcolor{cyan!30}Sin iniciar & \cellcolor{green!20}Bajo & \\
@@ -178,7 +182,8 @@ Completado y Atrasado. Y la prioridad Baja, Media y Alta.
  & & & & 0 & \cellcolor{cyan!30}Atrasado & \cellcolor{green!20}Alta & \\
 \hline
 \caption{Tablero de Monitoreo SCRUM}
-\end{longtable}
+\end{xltabular}
+\endgroup
 
 \subsubsection*{Ceremonias SCRUM}
 
@@ -197,7 +202,7 @@ avance del equipo y promover la mejora continua.
 
 El Product Backlog para este proyecto es el siguiente:
 
-\begin{longtable}{|c|p{9.5cm}|c|}
+\begin{xltabular}{\textwidth}{|c|X|c|}
 \hline
 \rowcolor{gray!20}
 \textbf{Orden} & \textbf{Elemento del Backlog} & \textbf{Prioridad} \\
@@ -214,7 +219,7 @@ El Product Backlog para este proyecto es el siguiente:
 9 & Elaborar documentación técnica & Baja \\ \hline
 10 & Preparar el plan de pruebas & Baja \\ \hline
 \caption{Product Backlog}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Historias de Usuario}
 
@@ -279,21 +284,21 @@ consultores especializados en análisis de sistemas, bases de datos y gestión d
 El esfuerzo total estimado para la ejecución es de 600 horas de trabajo, distribuidas entre
 las diferentes actividades de análisis, diseño, planificación y documentación.
 
-\begin{longtable}{|p{5cm}|c|c|c|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.6cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
 \hline
 \endhead
-Análisis del negocio y requisitos & 100 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 200 000,00 \\ \hline
-Diseño de la base de datos & 140 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 680 000,00 \\ \hline
-Diseño de arquitectura & 80 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 960 000,00 \\ \hline
-Diagramas UML & 70 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 840 000,00 \\ \hline
-Planificación SCRUM y documentación & 110 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 320 000,00 \\ \hline
-Diseño integración Tableau & 100 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 200 000,00 \\ \hline
+Análisis del negocio y requisitos & 100 & \textcurrency\ 12 000,00 & \textcurrency\ 1 200 000,00 \\ \hline
+Diseño de la base de datos & 140 & \textcurrency\ 12 000,00 & \textcurrency\ 1 680 000,00 \\ \hline
+Diseño de arquitectura & 80 & \textcurrency\ 12 000,00 & \textcurrency\ 960 000,00 \\ \hline
+Diagramas UML & 70 & \textcurrency\ 12 000,00 & \textcurrency\ 840 000,00 \\ \hline
+Planificación SCRUM y documentación & 110 & \textcurrency\ 12 000,00 & \textcurrency\ 1 320 000,00 \\ \hline
+Diseño integración Tableau & 100 & \textcurrency\ 12 000,00 & \textcurrency\ 1 200 000,00 \\ \hline
 \textbf{TOTAL} & \textbf{600} & & \textbf{\textcurrency\ 7 200 000,00} \\ \hline
 \caption{Presupuesto}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Puntos de historia y esfuerzo}
 
@@ -302,7 +307,7 @@ sistema, se utilizará la técnica de Story Points, la cual permite medir la com
 riesgo y el tiempo relativo de cada historia de usuario. Esta estimación facilitará la
 planificación de los Sprints y la asignación de tareas durante el desarrollo del proyecto.
 
-\begin{longtable}{|p{9.5cm}|c|c|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
@@ -318,7 +323,7 @@ HU7: Recibir recordatorios de citas & Bajo & 3 \\ \hline
 HU8: Consultar estadísticas sobre citas, pacientes y especialidades & Medio & 5 \\ \hline
 \textbf{Total} & & \textbf{47} \\ \hline
 \caption{Puntos de Historia}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Diseño de arquitectura del sistema}
 
@@ -578,7 +583,7 @@ Como parte de la definición de herramientas concretas para el desarrollo, se ev
 conjunto de Tableau y Power BI, dado que ambas soluciones son compatibles con
 PostgreSQL y cubren necesidades complementarias del proyecto.
 
-\begin{longtable}{|p{3cm}|p{5cm}|p{5cm}|}
+\begin{xltabular}{\textwidth}{|p{2.6cm}|X|X|}
 \hline
 \rowcolor{gray!20}
 \textbf{Criterio} & \textbf{Tableau} & \textbf{Power BI} \\
@@ -595,7 +600,7 @@ Costo de licenciamiento & Más alto por usuario & Más accesible por usuario \\
 Integración con Microsoft 365 & No nativa & Nativa (ventaja para Power Apps) \\
 \hline
 \caption{Comparación Tableau vs. Power BI}
-\end{longtable}
+\end{xltabular}
 
 Con base en esta comparación, el equipo decide utilizar \textbf{ambas herramientas de
 forma complementaria}: Tableau para la representación visual de la información
@@ -618,7 +623,7 @@ deberá considerar costos recurrentes de licenciamiento para operar las herramie
 A continuación se presentan valores referenciales de mercado, los cuales deberán
 confirmarse con los sitios oficiales de cada proveedor antes de la entrega final.
 
-\begin{longtable}{|p{5cm}|p{4cm}|p{4.5cm}|}
+\begin{xltabular}{\textwidth}{|p{2.8cm}|X|X|}
 \hline
 \rowcolor{gray!20}
 \textbf{Herramienta} & \textbf{Licencia} & \textbf{Costo referencial} \\
@@ -633,14 +638,14 @@ Power BI & Pro (por usuario) & \textasciitilde \$10 USD/usuario/mes \\
 Power Apps & Plan por usuario & \textasciitilde \$5 USD/usuario/mes \\
 \hline
 \caption{Costos referenciales de licenciamiento de herramientas de BI (valores de mercado, sujetos a confirmación)}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Revisión del presupuesto y actualización de proyecciones}
 
 Se actualiza el presupuesto de diseño e implementación del proyecto (Tabla 4) para incluir
 las horas adicionales de análisis e integración correspondientes a Power BI y Power Apps.
 
-\begin{longtable}{|p{6.5cm}|c|c|c|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.6cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
@@ -655,7 +660,7 @@ Diseño integración Tableau & 100 & \textcurrency\ 12 000,00 & \textcurrency\ 1
 Diseño integración Power BI / Power Apps & 40 & \textcurrency\ 12 000,00 & \textcurrency\ 480 000,00 \\ \hline
 \textbf{TOTAL} & \textbf{640} & & \textbf{\textcurrency\ 7 680 000,00} \\ \hline
 \caption{Presupuesto ajustado (Semana 3)}
-\end{longtable}
+\end{xltabular}
 
 % --------------------- SEMANA 4 ---------------------
 \subsection{Semana 4}
@@ -672,7 +677,7 @@ calcula la duración en días de cada actividad asumiendo una jornada de 8 horas
 cantidad de consultores asignados a cada tarea, con el fin de identificar la ruta crítica del
 proyecto mediante el método de la ruta crítica (CPM).
 
-\begin{longtable}{|p{4.5cm}|p{1.3cm}|p{1.8cm}|p{2.3cm}|p{1.6cm}|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.7cm}|p{2.6cm}|>{\centering\arraybackslash}p{1.8cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Tarea} & \textbf{Horas} & \textbf{Duración (días)} & \textbf{Predecesora} & \textbf{¿Ruta crítica?} \\
@@ -686,7 +691,7 @@ T5. Planificación SCRUM y documentación & 110 & 14 & --- (transversal) & No \\
 T6. Diseño integración Tableau & 100 & 13 & T4 & Sí \\ \hline
 T7. Diseño integración Power BI / Power Apps & 40 & 5 & T4 & No \\ \hline
 \caption{Ruta crítica del proyecto}
-\end{longtable}
+\end{xltabular}
 
 La ruta crítica queda conformada por las tareas \textbf{T1 $\rightarrow$ T3 $\rightarrow$ T4
 $\rightarrow$ T6}, con una duración total estimada de \textbf{35 días hábiles} (aprox. 7
@@ -706,7 +711,7 @@ Con base en la ruta crítica, se detalla la distribución de las 640 horas total
 integrantes del equipo de Tico Tech (Scrum Master y cuatro consultores; el Product Owner
 es un recurso externo de GineSalud y no forma parte de esta distribución de horas).
 
-\begin{longtable}{|p{4cm}|p{6cm}|c|}
+\begin{xltabular}{\textwidth}{|p{3.4cm}|X|>{\centering\arraybackslash}p{1.6cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Integrante} & \textbf{Actividades asignadas} & \textbf{Horas} \\
@@ -719,12 +724,12 @@ Consultor 4 -- Especialista en BI & Integración con Tableau y con Power BI/Powe
 Scrum Master / Líder de Proyecto & Planificación SCRUM y documentación & 110 \\ \hline
 \textbf{TOTAL} & & \textbf{640} \\ \hline
 \caption{Distribución de horas por integrante del equipo}
-\end{longtable}
+\end{xltabular}
 
 Asimismo, se actualiza la estimación de Puntos de Historia (Tabla 5) incorporando la
 Historia de Usuario 13, definida durante la Semana 3.
 
-\begin{longtable}{|p{9.5cm}|c|c|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
@@ -734,7 +739,7 @@ HU1 a HU8 (ver Tabla 5) & --- & 47 \\ \hline
 HU13: Registrar y actualizar catálogos administrativos vía Power BI/Power Apps & Medio & 5 \\ \hline
 \textbf{Total actualizado} & & \textbf{52} \\ \hline
 \caption{Puntos de Historia actualizados}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Análisis de riesgos}
 
@@ -742,7 +747,7 @@ Se identifican los principales riesgos del proyecto, considerando el manejo de i
 clínica sensible propia de una clínica ginecológica y la incorporación de nuevas
 herramientas de integración (Tableau y Power BI/Power Apps).
 
-\begin{longtable}{|p{3.3cm}|p{1.5cm}|p{1.5cm}|p{3.2cm}|p{3.2cm}|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{1.5cm}|X|X|}
 \hline
 \rowcolor{gray!20}
 \textbf{Riesgo} & \textbf{Probabilidad} & \textbf{Impacto} & \textbf{Mitigación} & \textbf{Plan de contingencia} \\
@@ -761,14 +766,14 @@ Cambios de alcance (\textit{scope creep}) solicitados por el Product Owner de Gi
 Rotación o ausencia de algún integrante del equipo de Tico Tech & Baja & Alto & Documentación exhaustiva y traspaso de conocimiento entre consultores & Incorporación de un consultor de respaldo previamente identificado \\
 \hline
 \caption{Análisis de riesgos del proyecto}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Métricas clave de éxito del sistema}
 
 Se definen las métricas que permitirán evaluar si el sistema cumple con los objetivos
 planteados por GineSalud una vez puesto en funcionamiento.
 
-\begin{longtable}{|p{4cm}|p{5.5cm}|p{3.5cm}|}
+\begin{xltabular}{\textwidth}{|p{3.4cm}|X|p{2.8cm}|}
 \hline
 \rowcolor{gray!20}
 \textbf{Métrica} & \textbf{Descripción} & \textbf{Meta objetivo} \\
@@ -781,7 +786,7 @@ Disponibilidad del sistema (\textit{uptime}) & Porcentaje de tiempo que el siste
 Adopción del sistema por el personal & Porcentaje del personal capacitado que utiliza el sistema de forma regular & Mayor al 90\% en los primeros 3 meses \\ \hline
 Tiempo de actualización de reportes en Tableau/Power BI & Tiempo entre el registro de un dato y su reflejo en los dashboards & Menor a 24 horas \\ \hline
 \caption{Métricas clave de éxito}
-\end{longtable}
+\end{xltabular}
 
 % --------------------- SEMANA 5 ---------------------
 \subsection{Semana 5}
@@ -826,7 +831,7 @@ el prototipo, corriendo en orden los scripts \texttt{sql/01\_schema.sql} →
 \texttt{sql/02\_seed\_data.sql} → \texttt{sql/03\_views\_bi.sql} contra una base de datos
 PostgreSQL 18 real.
 
-\begin{longtable}{|p{4cm}|p{1.6cm}|p{4cm}|p{3.4cm}|}
+\begin{xltabular}{\textwidth}{|X|>{\centering\arraybackslash}p{1.6cm}|X|X|}
 \hline
 \rowcolor{gray!20}
 \textbf{Caso de prueba} & \textbf{Tipo} & \textbf{Resultado esperado} & \textbf{Resultado obtenido} \\
@@ -845,7 +850,7 @@ Conectar Tableau Desktop a \textit{vw\_indicadores\_especialidad} & Integración
 Conectar Power BI a las vistas y registrar una especialidad vía Power Apps & Integración & La nueva especialidad aparece en PostgreSQL y en el reporte de Power BI tras actualizar el dataset & Pendiente de ejecutar (requiere Power BI Desktop / Power Apps) \\
 \hline
 \caption{Reporte de pruebas iniciales (base de datos \textit{ginesalud} creada y validada el 09/08/2026)}
-\end{longtable}
+\end{xltabular}
 
 \subsubsection*{Análisis de rendimiento y posibles cuellos de botella}
 
