@@ -1,0 +1,953 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ===================== PAQUETES =====================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
+
+% ===================== COMANDO PARA PLACEHOLDERS DE IMAGEN =====================
+% Uso: \placeholderimg{ancho}{alto}{Texto/etiqueta de la figura}
+% Cuando tengas la imagen real, reemplaza el bloque por:
+% \includegraphics[width=ancho]{nombre_archivo.png}
+\newcommand{\placeholderimg}[3]{%
+  \begin{center}
+  \begin{tikzpicture}
+    \pgfmathsetmacro{\phw}{max(#1-1,2)}
+    \draw[dashed, thick, gray] (0,0) rectangle (#1,#2);
+    \node[align=center, text width=\phw cm, gray] at (#1/2,#2/2) {\itshape #3};
+  \end{tikzpicture}
+  \end{center}
+}
+
+% Placeholder específico y más simple para el logo (evita cuentas raras de tikz)
+\newcommand{\logoplaceholder}[1][3cm]{%
+  \begin{tikzpicture}
+    \draw[dashed, thick, gray] (0,0) rectangle (#1,#1);
+    \node[gray, align=center] at (#1/2,#1/2) {\itshape Logo\\UPI};
+  \end{tikzpicture}
+}
+
+\title{}
+\date{}
+
+\begin{document}
+
+% ===================== PORTADA =====================
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+
+    % --- PLACEHOLDER LOGO UNIVERSIDAD ---
+    % Reemplazar por: \includegraphics[width=4cm]{logo_upi.png}
+    \logoplaceholder[4cm]
+
+    \vspace{0.5cm}
+    {\LARGE\bfseries Universidad\\Politécnica\\Internacional\par}
+
+    \vspace{2cm}
+    {\bfseries\large Análisis de Sistemas I\par}
+
+    \vspace{2cm}
+    {\large Proyecto Final\par}
+
+    \vspace{3cm}
+    {\large Integrantes:\par}
+    \vspace{0.5cm}
+    {\large Melanny Fiorella Víquez Saborío\par}
+    {\large Josue Villarreal Saavedra\par}
+
+    \vfill
+
+    {\large Prof. Javier Mata Guerrero\par}
+    \vspace{1cm}
+
+\end{titlepage}
+
+% ===================== ÍNDICE =====================
+\tableofcontents
+\newpage
+
+% ===================== INTRODUCCIÓN =====================
+\section{Introducción}
+
+Nuestro equipo ha sido contratado por una empresa pequeña que busca modernizar y
+fortalecer su infraestructura de información mediante el diseño de una solución tecnológica
+integral para la gestión de sus datos. La organización enfrenta la necesidad de centralizar la
+información de sus operaciones, optimizar el almacenamiento de los datos y disponer de
+herramientas que faciliten el análisis y la toma de decisiones estratégicas.
+
+Como equipo de análisis y arquitectura de sistemas, se nos ha encomendado la
+planificación y diseño de una base de datos desarrollada desde cero, capaz de responder a
+las necesidades actuales y futuras de la empresa. Además, la solución deberá quedar
+preparada para su integración con Tableau, permitiendo la generación de reportes,
+indicadores y paneles de control que apoyen el análisis de la información en tiempo real.
+
+Para alcanzar este objetivo, será necesario realizar un análisis completo del negocio,
+identificar los requerimientos funcionales y no funcionales, definir la arquitectura del
+sistema, elaborar los modelos y diagramas correspondientes, estimar tiempos, recursos y
+presupuesto, así como establecer una estrategia de desarrollo basada en la metodología
+SCRUM. Asimismo, se documentarán los riesgos, criterios de éxito y demás elementos
+necesarios para garantizar que la solución propuesta sea técnicamente viable, escalable y
+alineada con las necesidades de la organización.
+
+% ===================== DESARROLLO =====================
+\section{Desarrollo}
+
+El proyecto será ejecutado por un equipo de cinco colaboradores, para el cual se ha
+estimado un esfuerzo total de 600 horas de trabajo, distribuidas entre los integrantes según
+la planificación y las responsabilidades asignadas. A continuación, se presenta el análisis, la
+planificación y la documentación correspondiente para el desarrollo del proyecto, aplicando
+las prácticas y herramientas establecidas durante su ejecución.
+
+% --------------------- SEMANA 1 ---------------------
+\subsection{Semana 1}
+
+\subsubsection*{Definición del Negocio}
+
+La empresa Tico Tech, dedicada a la consultoría y desarrollo de soluciones tecnológicas, ha
+sido contratada por la clínica ginecológica GineSalud para llevar a cabo el análisis,
+planificación y diseño de un sistema de información que permita optimizar la gestión de sus
+operaciones. Como parte del proyecto, Tico Tech será responsable de definir la estrategia
+de desarrollo, identificar los requerimientos del negocio, diseñar la arquitectura del sistema y
+planificar una base de datos que respalde los procesos de la clínica y permita una futura
+integración con Tableau para la generación de reportes e indicadores.
+
+En esta primera etapa se desarrollarán las actividades iniciales del proyecto, incluyendo la
+definición del negocio, la planificación bajo la metodología SCRUM, la elaboración de
+historias de usuario, la estimación de recursos y esfuerzo, el diseño de la arquitectura del
+sistema y los primeros diagramas UML que servirán como base para las siguientes fases
+del proyecto.
+
+Para la planificación y gestión del proyecto, Tico Tech implementará la metodología ágil
+SCRUM, permitiendo organizar el trabajo en iteraciones, mejorar la comunicación entre los
+integrantes del equipo y garantizar la entrega continua de resultados durante las diferentes
+etapas del proyecto.
+
+\subsubsection*{Roles SCRUM}
+
+A continuación se muestran los roles de SCRUM de este proyecto.
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{7.5cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Rol} & \textbf{Responsable} & \textbf{Función} \\
+\hline
+\endhead
+Product Owner & Representante de GineSalud & Define las necesidades del negocio, prioriza el Product Backlog y valida que los entregables satisfagan los requerimientos de la clínica. \\
+\hline
+Scrum Master & Líder de Proyecto de Tico Tech & Facilita la implementación de SCRUM, elimina impedimentos y asegura el cumplimiento de la metodología durante el proyecto. \\
+\hline
+Equipo de Desarrollo & Cuatro consultores de Tico Tech & Analizan los requerimientos, diseñan la solución, elaboran la documentación, desarrollan los modelos de datos y preparan la integración con Tableau. \\
+\hline
+\caption{Roles SCRUM del proyecto}
+\end{longtable}
+
+\subsubsection*{Tablero SCRUM}
+
+Seguidamente se muestra el tablero que se utilizará para organizar y monitorear el avance
+de las actividades del proyecto. El estado puede ser Sin iniciar, En curso, En revisión,
+Completado y Atrasado. Y la prioridad Baja, Media y Alta.
+
+\begin{longtable}{|p{2cm}|p{1.7cm}|p{1.6cm}|p{1.6cm}|p{1.1cm}|p{1.6cm}|p{1.3cm}|p{1.8cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Nombre de la tarea} & \textbf{Asignada a} & \textbf{Fecha de inicio} & \textbf{Fecha de finalización} & \textbf{Duración (días)} & \textbf{Estado} & \textbf{Prioridad} & \textbf{Comentarios} \\
+\hline
+\endhead
+ & & & & 0 & \cellcolor{cyan!30}Sin iniciar & \cellcolor{green!20}Bajo & \\
+\hline
+ & & & & 0 & \cellcolor{cyan!30}En curso & \cellcolor{green!20}Alta & \\
+\hline
+ & & & & 0 & \cellcolor{cyan!30}Completado & \cellcolor{green!20}Media & \\
+\hline
+ & & & & 0 & \cellcolor{cyan!30}Atrasado & \cellcolor{green!20}Alta & \\
+\hline
+\caption{Tablero de Monitoreo SCRUM}
+\end{longtable}
+
+\subsubsection*{Ceremonias SCRUM}
+
+Durante el desarrollo del proyecto se llevarán a cabo las ceremonias establecidas por la
+metodología SCRUM con el propósito de planificar las actividades, dar seguimiento al
+avance del equipo y promover la mejora continua.
+
+\begin{itemize}
+    \item \textbf{Sprint Planning:} reunión realizada al inicio de cada Sprint para definir los objetivos, priorizar las tareas del Product Backlog y planificar las actividades que serán desarrolladas durante el período de trabajo.
+    \item \textbf{Daily Scrum:} reunión diaria de aproximadamente 15 minutos en la que cada integrante comparte el progreso de sus actividades, comunica los impedimentos encontrados y coordina el trabajo con el resto del equipo.
+    \item \textbf{Sprint Review:} reunión al finalizar cada Sprint en la que se presentan los entregables al Product Owner para obtener retroalimentación, validar el cumplimiento de los requerimientos y definir posibles ajustes.
+    \item \textbf{Sprint Retrospective:} reunión de mejora continua realizada al cierre de cada Sprint, donde el equipo analiza los resultados obtenidos, identifica oportunidades de mejora y establece acciones para optimizar el proceso de trabajo en las siguientes iteraciones.
+\end{itemize}
+
+\subsubsection*{Product Backlog}
+
+El Product Backlog para este proyecto es el siguiente:
+
+\begin{longtable}{|c|p{9.5cm}|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Orden} & \textbf{Elemento del Backlog} & \textbf{Prioridad} \\
+\hline
+\endhead
+1 & Analizar los procesos actuales de la clínica & Alta \\ \hline
+2 & Definir los requisitos funcionales y no funcionales & Alta \\ \hline
+3 & Diseñar la base de datos & Alta \\ \hline
+4 & Diseñar la arquitectura del sistema & Alta \\ \hline
+5 & Gestionar pacientes, citas y expedientes médicos & Alta \\ \hline
+6 & Diseñar la integración con Tableau & Media \\ \hline
+7 & Elaborar diagramas UML & Media \\ \hline
+8 & Definir roles y permisos & Media \\ \hline
+9 & Elaborar documentación técnica & Baja \\ \hline
+10 & Preparar el plan de pruebas & Baja \\ \hline
+\caption{Product Backlog}
+\end{longtable}
+
+\subsubsection*{Historias de Usuario}
+
+Con el objetivo de identificar las necesidades de la clínica ginecológica GineSalud, se
+definieron las siguientes historias de usuario. Estas representan las funcionalidades
+principales que deberá ofrecer el sistema y fueron priorizadas según su impacto en la
+operación de la clínica y las necesidades del cliente.
+
+\paragraph{Historia de Usuario 1}
+Como recepcionista de la clínica,\\
+Quiero registrar nuevas pacientes en el sistema,\\
+Para mantener actualizada la información y agilizar el proceso de atención.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 2}
+Como recepcionista de la clínica,\\
+Quiero programar, modificar y cancelar citas médicas,\\
+Para organizar la agenda de los especialistas y evitar conflictos de horarios.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 3}
+Como ginecólogo,\\
+Quiero consultar el expediente clínico de una paciente,\\
+Para conocer su historial médico antes de realizar la consulta.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 4}
+Como ginecólogo,\\
+Quiero registrar diagnósticos, tratamientos y observaciones médicas,\\
+Para mantener actualizado el historial clínico de cada paciente.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 5}
+Como administrador del sistema,\\
+Quiero administrar los usuarios y sus permisos,\\
+Para garantizar que cada colaborador tenga acceso únicamente a la información
+correspondiente a su rol.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 6}
+Como administrador,\\
+Quiero visualizar reportes e indicadores mediante Tableau,\\
+Para analizar el desempeño de la clínica y apoyar la toma de decisiones.\\
+\textbf{Prioridad:} Media
+
+\paragraph{Historia de Usuario 7}
+Como paciente,\\
+Quiero recibir recordatorios de mis citas,\\
+Para reducir el riesgo de olvidar la fecha y hora de mi consulta.\\
+\textbf{Prioridad:} Media
+
+\paragraph{Historia de Usuario 8}
+Como administrador,\\
+Quiero consultar estadísticas sobre citas, pacientes y especialidades,\\
+Para identificar tendencias y mejorar la planificación de los servicios.\\
+\textbf{Prioridad:} Media
+
+\subsubsection*{Presupuesto}
+
+Para el desarrollo del proyecto, Tico Tech asignará un equipo conformado por cinco
+consultores especializados en análisis de sistemas, bases de datos y gestión de proyectos.
+El esfuerzo total estimado para la ejecución es de 600 horas de trabajo, distribuidas entre
+las diferentes actividades de análisis, diseño, planificación y documentación.
+
+\begin{longtable}{|p{5cm}|c|c|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
+\hline
+\endhead
+Análisis del negocio y requisitos & 100 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 200 000,00 \\ \hline
+Diseño de la base de datos & 140 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 680 000,00 \\ \hline
+Diseño de arquitectura & 80 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 960 000,00 \\ \hline
+Diagramas UML & 70 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 840 000,00 \\ \hline
+Planificación SCRUM y documentación & 110 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 320 000,00 \\ \hline
+Diseño integración Tableau & 100 & \textcolor{black}{\textcurrency} 12 000,00 & \textcolor{black}{\textcurrency} 1 200 000,00 \\ \hline
+\textbf{TOTAL} & \textbf{600} & & \textbf{\textcurrency\ 7 200 000,00} \\ \hline
+\caption{Presupuesto}
+\end{longtable}
+
+\subsubsection*{Puntos de historia y esfuerzo}
+
+Con el fin de estimar el esfuerzo requerido para el desarrollo de las funcionalidades del
+sistema, se utilizará la técnica de Story Points, la cual permite medir la complejidad, el
+riesgo y el tiempo relativo de cada historia de usuario. Esta estimación facilitará la
+planificación de los Sprints y la asignación de tareas durante el desarrollo del proyecto.
+
+\begin{longtable}{|p{9.5cm}|c|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
+\hline
+\endhead
+HU1: Registrar nuevas pacientes en el sistema & Medio & 5 \\ \hline
+HU2: Programar, modificar y cancelar citas médicas & Alto & 8 \\ \hline
+HU3: Consultar expediente clínico de una paciente & Medio & 5 \\ \hline
+HU4: Registrar diagnósticos, tratamientos y observaciones médicas & Alto & 8 \\ \hline
+HU5: Administrar usuarios y permisos del sistema & Medio & 5 \\ \hline
+HU6: Visualizar reportes e indicadores mediante Tableau & Alto & 8 \\ \hline
+HU7: Recibir recordatorios de citas & Bajo & 3 \\ \hline
+HU8: Consultar estadísticas sobre citas, pacientes y especialidades & Medio & 5 \\ \hline
+\textbf{Total} & & \textbf{47} \\ \hline
+\caption{Puntos de Historia}
+\end{longtable}
+
+\subsubsection*{Diseño de arquitectura del sistema}
+
+La solución propuesta para GineSalud estará basada en una arquitectura cliente-servidor de
+tres capas, permitiendo una adecuada separación entre la interfaz de usuario, la lógica del
+negocio y la base de datos. Esta arquitectura facilitará el mantenimiento, la escalabilidad y
+la integración con herramientas de análisis como Tableau.
+
+La arquitectura estará compuesta por los siguientes componentes:
+
+\paragraph{Capa de Presentación}
+Corresponde a la interfaz utilizada por los usuarios del sistema, incluyendo recepcionistas,
+ginecólogos y administradores. Desde esta capa se gestionarán las citas, pacientes,
+expedientes clínicos y demás operaciones de la clínica.
+
+\paragraph{Capa de Lógica de Negocio}
+Será la encargada de procesar las reglas del negocio, validar la información ingresada por
+los usuarios, administrar los permisos de acceso y controlar las operaciones del sistema
+antes de almacenar o consultar los datos.
+
+\paragraph{Capa de Datos}
+Estará conformada por una base de datos relacional donde se almacenará toda la
+información relacionada con pacientes, médicos, citas, expedientes clínicos, tratamientos,
+usuarios y demás registros necesarios para el funcionamiento de la clínica.
+
+\paragraph{Integración con Tableau}
+La base de datos será preparada para permitir la conexión con Tableau, desde donde se
+podrán construir dashboards e indicadores para apoyar la toma de decisiones de la
+administración de GineSalud mediante el análisis de información en tiempo real.
+
+% --- PLACEHOLDER FIGURA 1 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura1_arquitectura.png}
+\placeholderimg{12}{7}{Figura 1. Propuesta minimalista de la Arquitectura del Sistema}
+
+\subsubsection*{Primeros diagramas UML}
+
+\paragraph{Diagrama de Casos de Uso}
+Este diagrama muestra quiénes usarán el sistema y qué acciones principales podrán
+realizar, basándose directamente en las Historias de Usuario vistas anteriormente.
+
+% --- PLACEHOLDER FIGURA 2 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura2_casos_uso.png}
+\placeholderimg{12}{9}{Figura 2. Primer diagrama de casos de uso del sistema}
+
+% --------------------- SEMANA 2 ---------------------
+\subsection{Semana 2}
+
+\subsubsection*{Refinamiento de requisitos funcionales y no funcionales}
+
+Durante la segunda semana del proyecto se realizará el refinamiento de los requisitos del
+sistema para la clínica ginecológica GineSalud, con el objetivo de detallar las necesidades
+identificadas y establecer las características principales que deberá cumplir la solución
+tecnológica.
+
+\paragraph{Requisitos funcionales}
+El sistema deberá permitir la gestión de pacientes, facilitando el registro y actualización de
+la información personal necesaria para la atención médica. Además, deberá permitir la
+administración de citas médicas, incluyendo la creación, modificación y cancelación de
+horarios según la disponibilidad de los especialistas.
+
+También deberá brindar acceso al expediente clínico de las pacientes, permitiendo a los
+ginecólogos consultar el historial médico y registrar diagnósticos, tratamientos y
+observaciones correspondientes a cada consulta. Asimismo, el sistema deberá incluir la
+administración de usuarios y permisos, garantizando que cada colaborador tenga acceso
+según su rol.
+
+Finalmente, la solución deberá permitir la generación de reportes e indicadores mediante
+Tableau, así como la consulta de estadísticas relacionadas con pacientes, citas y
+especialidades para apoyar la toma de decisiones administrativas.
+
+\paragraph{Requisitos no funcionales}
+El sistema deberá garantizar la seguridad de la información mediante controles de acceso y
+permisos para proteger los datos clínicos de las pacientes. Además, deberá ofrecer un buen
+rendimiento para permitir consultas y operaciones de manera eficiente durante la atención
+diaria de la clínica.
+
+La solución deberá contar con una arquitectura escalable y mantenible que facilite futuras
+mejoras o ampliaciones del sistema. También deberá asegurar la integridad de los datos
+almacenados, evitando inconsistencias o duplicidad de información.
+
+Por último, el sistema deberá ser fácil de utilizar para los diferentes usuarios de la clínica y
+permitir la integración con Tableau para la visualización de reportes e indicadores.
+
+\subsubsection*{Elaboración de historias de usuario adicionales}
+
+Como parte del refinamiento de requisitos, se identificaron historias de usuario
+complementarias que permiten detallar mejor algunas funcionalidades necesarias para la
+operación del sistema.
+
+\paragraph{Historia de Usuario 9}
+Como recepcionista de la clínica,\\
+quiero buscar pacientes registradas mediante sus datos personales,\\
+para localizar rápidamente la información necesaria durante la atención.\\
+\textbf{Prioridad:} Media
+
+\paragraph{Historia de Usuario 10}
+Como ginecólogo,\\
+quiero consultar las citas programadas de mi agenda,\\
+para organizar mis consultas y conocer las pacientes pendientes de atención.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 11}
+Como administrador del sistema,\\
+quiero controlar los permisos asignados a cada usuario,\\
+para proteger la información clínica y garantizar accesos adecuados.\\
+\textbf{Prioridad:} Alta
+
+\paragraph{Historia de Usuario 12}
+Como administrador,\\
+quiero visualizar indicadores de atención de la clínica,\\
+para analizar el comportamiento de las citas y apoyar la toma de decisiones.\\
+\textbf{Prioridad:} Media
+
+\subsubsection*{Definición de roles y permisos en el sistema}
+
+Durante esta etapa se definirán los roles de acceso que tendrá cada usuario dentro del
+sistema GineSalud, con el propósito de garantizar la seguridad de la información y controlar
+el acceso a las funcionalidades según las responsabilidades de cada colaborador.
+
+El recepcionista tendrá permisos para registrar pacientes, gestionar citas médicas y
+consultar información básica necesaria para la atención administrativa. El ginecólogo tendrá
+acceso a los expedientes clínicos de las pacientes asignadas, además de poder registrar
+diagnósticos, tratamientos y observaciones médicas. El administrador del sistema contará
+con permisos para gestionar usuarios, asignar roles, supervisar la información general y
+consultar reportes e indicadores mediante Tableau.
+
+La definición de estos permisos permitirá proteger la información clínica y asegurar que
+cada usuario acceda únicamente a los datos necesarios para realizar sus funciones.
+
+\subsubsection*{Documentación de requerimientos técnicos (lenguajes, frameworks, bases de datos, etc.)}
+
+Para el desarrollo del sistema de información de GineSalud se utilizarán tecnologías que
+permitan construir una solución segura, escalable y fácil de mantener.
+
+El backend será desarrollado con Python utilizando el framework Django, encargado de
+manejar la lógica del sistema, procesos de pacientes, citas y expedientes clínicos.
+
+El frontend se desarrollará con HTML5, CSS3, JavaScript y Bootstrap, permitiendo crear
+una interfaz sencilla y adaptable para los usuarios de la clínica.
+
+Como base de datos se utilizará PostgreSQL, donde se almacenará la información de
+pacientes, médicos, citas, expedientes y usuarios.
+
+Para el análisis de información se utilizará Tableau, permitiendo generar reportes e
+indicadores para apoyar la toma de decisiones.
+
+Y por último el control de versiones se realizará mediante Git y GitHub.
+
+\subsubsection*{Organización de tareas en tableros SCRUM (Azure DevOps)}
+
+Para la gestión y seguimiento de las actividades del proyecto se utilizará \textbf{Azure DevOps
+(Azure Boards)} como tablero SCRUM, debido a que es una herramienta orientada a
+metodologías ágiles que permite organizar historias de usuario, asignar responsables,
+establecer prioridades y monitorear el avance de los Sprints.
+
+El tablero estará dividido en estados como Sin iniciar, En curso, En revisión, Completado y
+Atrasado, permitiendo visualizar el flujo de trabajo del equipo. Además, Azure DevOps
+facilitará el seguimiento de tareas relacionadas con el análisis de requisitos, diseño de base
+de datos, elaboración de diagramas UML, arquitectura del sistema e integración con Tableau.
+
+% --- PLACEHOLDER CAPTURA TABLERO AZURE DEVOPS ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{tablero_azure_devops.png}
+\placeholderimg{12}{7}{Captura del tablero Azure Boards con el Sprint actual}
+
+% --------------------- SEMANA 3 ---------------------
+\subsection{Semana 3}
+
+Durante la tercera semana del proyecto se profundiza en el modelado del sistema mediante
+nuevos diagramas UML, se refina la arquitectura definida en la Semana 1 y se realiza el
+análisis de factibilidad técnica y económica de la solución. Como parte de este refinamiento,
+se incorpora formalmente al proyecto el uso de \textbf{Power BI} como herramienta
+complementaria a Tableau, ambas conectadas a la base de datos relacional
+\textbf{PostgreSQL} definida en la Semana 2.
+
+\subsubsection*{Refinamiento de la arquitectura del sistema}
+
+Se ratifica la arquitectura cliente-servidor de tres capas definida en la Semana 1 (Presentación,
+Lógica de Negocio y Datos) frente a las alternativas de arquitectura monolítica y de
+microservicios. Se descarta un monolito puro porque dificultaría separar la lógica clínica
+sensible de la capa de reportería, y se descarta microservicios por representar una
+complejidad de infraestructura innecesaria para un sistema de este alcance y para un equipo
+de cinco colaboradores. La arquitectura de tres capas permite, además, conectar múltiples
+herramientas de análisis (Tableau y Power BI) directamente sobre la capa de datos sin
+afectar la lógica de negocio.
+
+Como refinamiento, se añade a la arquitectura una \textbf{sub-capa de Business Intelligence},
+compuesta por dos herramientas con propósitos distintos y complementarios:
+
+\begin{itemize}
+    \item \textbf{Tableau}: se conecta a PostgreSQL en modo de solo lectura para construir
+    dashboards, indicadores y reportes visuales orientados a la toma de decisiones de la
+    administración de GineSalud.
+    \item \textbf{Power BI}: se utiliza para la generación de reportes operativos y, mediante
+    formularios de \textbf{Power Apps} (parte de la suite Power Platform de Microsoft),
+    permitirá el ingreso y actualización de entidades administrativas del sistema (por
+    ejemplo, especialidades médicas, catálogos de tratamientos y datos de usuarios), las
+    cuales se almacenan directamente en PostgreSQL.
+\end{itemize}
+
+\textit{Nota técnica:} Power BI, como herramienta de Microsoft, está orientado
+principalmente a la visualización y el análisis de datos, por lo que la escritura de nuevas
+entidades hacia la base de datos se realizará mediante \textbf{Power Apps}, que comparte
+el mismo conector a PostgreSQL y permite construir formularios de captura de datos; los
+reportes de Power BI se actualizarán a partir de esa misma información. De esta manera,
+Tableau se especializa en representar la información y Power BI/Power Apps se especializa
+en el ingreso de nuevas entidades, tal como fue definido por el equipo.
+
+\subsubsection*{Diagramas de Modelado del Sistema}
+
+\paragraph{Diagrama de Actividad}
+Se elabora un diagrama de actividad para el proceso \textit{``Registrar y confirmar una cita
+médica''}, mostrando el flujo desde que la recepcionista busca a la paciente, verifica la
+disponibilidad del especialista, registra la cita y el sistema genera la confirmación
+correspondiente.
+
+% --- PLACEHOLDER FIGURA 3 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura3_diagrama_actividad.png}
+\placeholderimg{12}{8}{Figura 3. Diagrama de actividad -- Registrar y confirmar cita médica}
+
+\paragraph{Diagrama de Clases}
+Se define el diagrama de clases que sustentará el modelo de la base de datos, integrando
+las siguientes entidades principales identificadas a partir de las historias de usuario:
+\textit{Paciente}, \textit{Cita}, \textit{ExpedienteClinico}, \textit{Diagnostico},
+\textit{Tratamiento}, \textit{Medico}, \textit{Especialidad}, \textit{Usuario} y \textit{Rol}. Las
+relaciones principales son: un \textit{Paciente} posee un \textit{ExpedienteClinico}; un
+\textit{ExpedienteClinico} contiene múltiples \textit{Diagnosticos} y \textit{Tratamientos}; una
+\textit{Cita} relaciona a un \textit{Paciente} con un \textit{Medico} en una \textit{Especialidad}
+determinada; y un \textit{Usuario} tiene asignado un \textit{Rol} que determina sus permisos.
+
+% --- PLACEHOLDER FIGURA 4 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura4_diagrama_clases.png}
+\placeholderimg{12}{8}{Figura 4. Diagrama de clases del sistema GineSalud}
+
+\paragraph{Diagrama de Despliegue}
+El diagrama de despliegue representa la distribución física de los componentes: un
+servidor de aplicaciones que aloja el backend en Django, un servidor de base de datos con
+PostgreSQL, los equipos cliente (navegador web) utilizados por recepcionistas, ginecólogos
+y administradores, y los servicios en la nube de Tableau y Power BI, ambos conectados al
+servidor de base de datos mediante conectores nativos/ODBC para consumir y, en el caso
+de Power BI/Power Apps, también escribir información.
+
+% --- PLACEHOLDER FIGURA 5 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura5_diagrama_despliegue.png}
+\placeholderimg{12}{8}{Figura 5. Diagrama de despliegue del sistema GineSalud}
+
+\subsubsection*{Historia de Usuario adicional}
+
+\paragraph{Historia de Usuario 13}
+Como administrador,\\
+quiero registrar y actualizar catálogos administrativos (especialidades, tratamientos, usuarios) mediante Power BI/Power Apps,\\
+para mantener actualizada la información sin necesidad de acceder directamente a la base de datos.\\
+\textbf{Prioridad:} Media
+
+\subsubsection*{Herramientas y tecnologías concretas: incorporación de Power BI}
+
+Como parte de la definición de herramientas concretas para el desarrollo, se evaluó el uso
+conjunto de Tableau y Power BI, dado que ambas soluciones son compatibles con
+PostgreSQL y cubren necesidades complementarias del proyecto.
+
+\begin{longtable}{|p{3cm}|p{5cm}|p{5cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Criterio} & \textbf{Tableau} & \textbf{Power BI} \\
+\hline
+\endhead
+Uso principal en el proyecto & Visualización avanzada y dashboards ejecutivos & Reportes operativos e ingreso de entidades vía Power Apps \\
+\hline
+Conexión a PostgreSQL & Conector nativo & Conector nativo \\
+\hline
+Curva de aprendizaje & Media-alta & Media \\
+\hline
+Costo de licenciamiento & Más alto por usuario & Más accesible por usuario \\
+\hline
+Integración con Microsoft 365 & No nativa & Nativa (ventaja para Power Apps) \\
+\hline
+\caption{Comparación Tableau vs. Power BI}
+\end{longtable}
+
+Con base en esta comparación, el equipo decide utilizar \textbf{ambas herramientas de
+forma complementaria}: Tableau para la representación visual de la información
+(dashboards e indicadores) y Power BI, apoyado en Power Apps, para el ingreso y
+mantenimiento de entidades administrativas del sistema.
+
+\subsubsection*{Análisis de factibilidad técnica}
+
+Desde el punto de vista técnico, el proyecto es viable: el equipo de Tico Tech cuenta con
+experiencia en Python/Django y bases de datos relacionales, y tanto Tableau como Power BI
+ofrecen conectores nativos u ODBC hacia PostgreSQL, por lo que no se requiere
+desarrollar integraciones personalizadas adicionales. El principal riesgo técnico identificado
+es la curva de aprendizaje de Power Apps para el diseño de formularios de ingreso de
+datos, la cual se mitigará mediante capacitación interna del equipo durante el desarrollo.
+
+\subsubsection*{Análisis de factibilidad económica}
+
+Además del presupuesto de análisis y diseño de Tico Tech (Tabla 4), la clínica GineSalud
+deberá considerar costos recurrentes de licenciamiento para operar las herramientas de BI.
+A continuación se presentan valores referenciales de mercado, los cuales deberán
+confirmarse con los sitios oficiales de cada proveedor antes de la entrega final.
+
+\begin{longtable}{|p{5cm}|p{4cm}|p{4.5cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Herramienta} & \textbf{Licencia} & \textbf{Costo referencial} \\
+\hline
+\endhead
+Tableau & Creator (por usuario) & \textasciitilde \$75 USD/usuario/mes \\
+\hline
+Tableau & Viewer (por usuario) & \textasciitilde \$15 USD/usuario/mes \\
+\hline
+Power BI & Pro (por usuario) & \textasciitilde \$10 USD/usuario/mes \\
+\hline
+Power Apps & Plan por usuario & \textasciitilde \$5 USD/usuario/mes \\
+\hline
+\caption{Costos referenciales de licenciamiento de herramientas de BI (valores de mercado, sujetos a confirmación)}
+\end{longtable}
+
+\subsubsection*{Revisión del presupuesto y actualización de proyecciones}
+
+Se actualiza el presupuesto de diseño e implementación del proyecto (Tabla 4) para incluir
+las horas adicionales de análisis e integración correspondientes a Power BI y Power Apps.
+
+\begin{longtable}{|p{6.5cm}|c|c|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Actividad} & \textbf{Horas} & \textbf{Costo por hora} & \textbf{Subtotal} \\
+\hline
+\endhead
+Análisis del negocio y requisitos & 100 & \textcurrency\ 12 000,00 & \textcurrency\ 1 200 000,00 \\ \hline
+Diseño de la base de datos & 140 & \textcurrency\ 12 000,00 & \textcurrency\ 1 680 000,00 \\ \hline
+Diseño de arquitectura & 80 & \textcurrency\ 12 000,00 & \textcurrency\ 960 000,00 \\ \hline
+Diagramas UML & 70 & \textcurrency\ 12 000,00 & \textcurrency\ 840 000,00 \\ \hline
+Planificación SCRUM y documentación & 110 & \textcurrency\ 12 000,00 & \textcurrency\ 1 320 000,00 \\ \hline
+Diseño integración Tableau & 100 & \textcurrency\ 12 000,00 & \textcurrency\ 1 200 000,00 \\ \hline
+Diseño integración Power BI / Power Apps & 40 & \textcurrency\ 12 000,00 & \textcurrency\ 480 000,00 \\ \hline
+\textbf{TOTAL} & \textbf{640} & & \textbf{\textcurrency\ 7 680 000,00} \\ \hline
+\caption{Presupuesto ajustado (Semana 3)}
+\end{longtable}
+
+% --------------------- SEMANA 4 ---------------------
+\subsection{Semana 4}
+
+Durante la cuarta semana del proyecto se refina la planificación temporal mediante el
+cálculo de la ruta crítica, se detalla la asignación de recursos por integrante del equipo, se
+documenta el análisis de riesgos del proyecto y se definen las métricas clave que permitirán
+medir el éxito del sistema una vez implementado.
+
+\subsubsection*{Refinamiento de la ruta crítica del proyecto}
+
+A partir de las actividades y horas estimadas en el presupuesto ajustado (Tabla 8), se
+calcula la duración en días de cada actividad asumiendo una jornada de 8 horas diarias y la
+cantidad de consultores asignados a cada tarea, con el fin de identificar la ruta crítica del
+proyecto mediante el método de la ruta crítica (CPM).
+
+\begin{longtable}{|p{4.5cm}|p{1.3cm}|p{1.8cm}|p{2.3cm}|p{1.6cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Tarea} & \textbf{Horas} & \textbf{Duración (días)} & \textbf{Predecesora} & \textbf{¿Ruta crítica?} \\
+\hline
+\endhead
+T1. Análisis del negocio y requisitos & 100 & 7 & --- & Sí \\ \hline
+T2. Diseño de la base de datos & 140 & 9 & T1 & No \\ \hline
+T3. Diseño de arquitectura & 80 & 10 & T1 & Sí \\ \hline
+T4. Diagramas UML & 70 & 5 & T2, T3 & Sí \\ \hline
+T5. Planificación SCRUM y documentación & 110 & 14 & --- (transversal) & No \\ \hline
+T6. Diseño integración Tableau & 100 & 13 & T4 & Sí \\ \hline
+T7. Diseño integración Power BI / Power Apps & 40 & 5 & T4 & No \\ \hline
+\caption{Ruta crítica del proyecto}
+\end{longtable}
+
+La ruta crítica queda conformada por las tareas \textbf{T1 $\rightarrow$ T3 $\rightarrow$ T4
+$\rightarrow$ T6}, con una duración total estimada de \textbf{35 días hábiles} (aprox. 7
+semanas de trabajo efectivo). Estas tareas no cuentan con holgura, por lo que cualquier
+atraso en ellas impactará directamente la fecha de finalización del proyecto. Las tareas T2
+y T7 cuentan con holgura respecto a sus rutas paralelas (T3 y T6, respectivamente), mientras
+que T5 se ejecuta de forma transversal durante todo el proyecto y no condiciona la ruta
+crítica.
+
+% --- PLACEHOLDER FIGURA 6 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura6_diagrama_red_gantt.png}
+\placeholderimg{12}{7}{Figura 6. Diagrama de red / Gantt de la ruta crítica}
+
+\subsubsection*{Estimación más precisa de tiempos y recursos}
+
+Con base en la ruta crítica, se detalla la distribución de las 640 horas totales entre los
+integrantes del equipo de Tico Tech (Scrum Master y cuatro consultores; el Product Owner
+es un recurso externo de GineSalud y no forma parte de esta distribución de horas).
+
+\begin{longtable}{|p{4cm}|p{6cm}|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Integrante} & \textbf{Actividades asignadas} & \textbf{Horas} \\
+\hline
+\endhead
+Consultor 1 -- Analista de negocio & Análisis del negocio y requisitos & 100 \\ \hline
+Consultor 2 -- Diseñador de datos & Diseño de la base de datos & 140 \\ \hline
+Consultor 3 -- Arquitecto de software & Diseño de arquitectura y Diagramas UML & 150 \\ \hline
+Consultor 4 -- Especialista en BI & Integración con Tableau y con Power BI/Power Apps & 140 \\ \hline
+Scrum Master / Líder de Proyecto & Planificación SCRUM y documentación & 110 \\ \hline
+\textbf{TOTAL} & & \textbf{640} \\ \hline
+\caption{Distribución de horas por integrante del equipo}
+\end{longtable}
+
+Asimismo, se actualiza la estimación de Puntos de Historia (Tabla 5) incorporando la
+Historia de Usuario 13, definida durante la Semana 3.
+
+\begin{longtable}{|p{9.5cm}|c|c|}
+\hline
+\rowcolor{gray!20}
+\textbf{Historia de Usuario} & \textbf{Esfuerzo estimado} & \textbf{Puntos de Historia} \\
+\hline
+\endhead
+HU1 a HU8 (ver Tabla 5) & --- & 47 \\ \hline
+HU13: Registrar y actualizar catálogos administrativos vía Power BI/Power Apps & Medio & 5 \\ \hline
+\textbf{Total actualizado} & & \textbf{52} \\ \hline
+\caption{Puntos de Historia actualizados}
+\end{longtable}
+
+\subsubsection*{Análisis de riesgos}
+
+Se identifican los principales riesgos del proyecto, considerando el manejo de información
+clínica sensible propia de una clínica ginecológica y la incorporación de nuevas
+herramientas de integración (Tableau y Power BI/Power Apps).
+
+\begin{longtable}{|p{3.3cm}|p{1.5cm}|p{1.5cm}|p{3.2cm}|p{3.2cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Riesgo} & \textbf{Probabilidad} & \textbf{Impacto} & \textbf{Mitigación} & \textbf{Plan de contingencia} \\
+\hline
+\endhead
+Acceso no autorizado a datos clínicos sensibles de las pacientes & Media & Alto & Controles de acceso por rol, cifrado de datos y auditorías periódicas & Plan de respuesta a incidentes y notificación conforme a la Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales (Ley 8968) \\
+\hline
+Indisponibilidad del sistema durante el horario de atención de la clínica & Baja & Alto & Monitoreo del servidor, respaldos automáticos y entorno de pruebas separado del de producción & Procedimiento manual temporal de registro de citas y pacientes mientras se restablece el servicio \\
+\hline
+Retrasos en la integración con Tableau y Power BI/Power Apps por curva de aprendizaje & Media & Medio & Capacitación anticipada del Consultor 4 en ambas herramientas & Reasignación temporal de horas de otros integrantes hacia la tarea de integración \\
+\hline
+Inconsistencia o duplicidad de datos entre PostgreSQL y los formularios de Power Apps & Baja & Medio & Validaciones de datos y transacciones controladas en la capa de lógica de negocio & Rutinas periódicas de limpieza y reconciliación de datos \\
+\hline
+Cambios de alcance (\textit{scope creep}) solicitados por el Product Owner de GineSalud & Media & Medio & Gestión estricta del Product Backlog durante el Sprint Planning & Evaluación de impacto en tiempo/presupuesto mediante una solicitud formal de cambio \\
+\hline
+Rotación o ausencia de algún integrante del equipo de Tico Tech & Baja & Alto & Documentación exhaustiva y traspaso de conocimiento entre consultores & Incorporación de un consultor de respaldo previamente identificado \\
+\hline
+\caption{Análisis de riesgos del proyecto}
+\end{longtable}
+
+\subsubsection*{Métricas clave de éxito del sistema}
+
+Se definen las métricas que permitirán evaluar si el sistema cumple con los objetivos
+planteados por GineSalud una vez puesto en funcionamiento.
+
+\begin{longtable}{|p{4cm}|p{5.5cm}|p{3.5cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Métrica} & \textbf{Descripción} & \textbf{Meta objetivo} \\
+\hline
+\endhead
+Tiempo promedio de registro de una cita & Tiempo que toma al recepcionista registrar una nueva cita en el sistema & Menor a 2 minutos \\ \hline
+Porcentaje de citas sin conflicto de horario & Proporción de citas agendadas sin choques de horario entre especialistas & Mayor al 98\% \\ \hline
+Tiempo de respuesta en consulta de expediente & Tiempo que tarda el sistema en mostrar el expediente clínico de una paciente & Menor a 3 segundos \\ \hline
+Disponibilidad del sistema (\textit{uptime}) & Porcentaje de tiempo que el sistema se encuentra operativo durante el horario de atención & Mayor al 99\% \\ \hline
+Adopción del sistema por el personal & Porcentaje del personal capacitado que utiliza el sistema de forma regular & Mayor al 90\% en los primeros 3 meses \\ \hline
+Tiempo de actualización de reportes en Tableau/Power BI & Tiempo entre el registro de un dato y su reflejo en los dashboards & Menor a 24 horas \\ \hline
+\caption{Métricas clave de éxito}
+\end{longtable}
+
+% --------------------- SEMANA 5 ---------------------
+\subsection{Semana 5}
+
+Dado que este es un curso de análisis de sistemas y no de desarrollo completo, el alcance
+del prototipo funcional de la Semana 5 se definió como la implementación del modelo de
+datos relacional en PostgreSQL derivado del diagrama de clases de la Semana 3, junto con
+las vistas de integración hacia Tableau y Power BI. Los archivos del prototipo se encuentran
+versionados en el repositorio del proyecto, en las carpetas \texttt{/sql} y \texttt{/bi}.
+
+\subsubsection*{Desarrollo del prototipo funcional}
+
+Se implementaron tres scripts de PostgreSQL:
+
+\begin{itemize}
+    \item \texttt{sql/01\_schema.sql}: define las tablas \textit{rol}, \textit{especialidad},
+    \textit{usuario}, \textit{medico}, \textit{paciente}, \textit{expediente\_clinico},
+    \textit{cita}, \textit{diagnostico} y \textit{tratamiento}, con sus llaves foráneas,
+    restricciones de integridad e índices.
+    \item \texttt{sql/02\_seed\_data.sql}: carga datos de prueba (roles, especialidades,
+    usuarios, un médico, dos pacientes, expedientes, una cita y un diagnóstico/tratamiento)
+    para validar el prototipo.
+    \item \texttt{sql/03\_views\_bi.sql}: crea las vistas \textit{vw\_citas\_resumen},
+    \textit{vw\_indicadores\_especialidad} y \textit{vw\_especialidades\_catalogo},
+    utilizadas como fuente de datos por Tableau y Power BI respectivamente (ver
+    \texttt{bi/tableau/README.md} y \texttt{bi/powerbi/README.md}).
+\end{itemize}
+
+Como ejemplo de regla de negocio aplicada directamente en la base de datos, la tabla
+\textit{cita} incluye una restricción que impide agendar dos citas para el mismo médico en
+la misma fecha y hora, dando soporte a la HU2 (\textit{``evitar conflictos de horarios''}):
+
+\begin{verbatim}
+CONSTRAINT uq_medico_horario UNIQUE (id_medico, fecha_cita, hora_cita)
+\end{verbatim}
+
+\subsubsection*{Pruebas iniciales}
+
+Se definieron los siguientes casos de prueba unitarios y de integración sobre el prototipo.
+Los resultados obtenidos deberán completarse al ejecutar los scripts en un entorno
+PostgreSQL real, siguiendo los pasos descritos en \texttt{prototipo/README.md}.
+
+\begin{longtable}{|p{4cm}|p{1.6cm}|p{4cm}|p{3.4cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Caso de prueba} & \textbf{Tipo} & \textbf{Resultado esperado} & \textbf{Resultado obtenido} \\
+\hline
+\endhead
+Insertar paciente con cédula duplicada & Unitaria & Error de integridad (restricción UNIQUE en \textit{cedula}) & \textbf{OK} -- error \textit{paciente\_cedula\_key} obtenido según lo esperado \\
+\hline
+Insertar cita con el mismo médico, fecha y hora que otra existente & Unitaria & Error de integridad, evita doble reserva & \textbf{OK} -- error \textit{uq\_medico\_horario} obtenido según lo esperado \\
+\hline
+Consultar \textit{vw\_citas\_resumen} tras insertar una nueva cita & Integración & La vista refleja la cita con los datos de paciente, médico y especialidad correctamente unidos & \textbf{OK} -- las 2 citas de prueba se listan con el JOIN correcto \\
+\hline
+Eliminar una especialidad referenciada por un médico existente & Unitaria & Error de integridad referencial (llave foránea) & \textbf{OK} -- error \textit{medico\_id\_especialidad\_fkey} obtenido según lo esperado \\
+\hline
+Conectar Tableau Desktop a \textit{vw\_indicadores\_especialidad} & Integración & El dashboard despliega el conteo de citas por especialidad y estado & Pendiente de ejecutar (requiere Tableau Desktop) \\
+\hline
+Conectar Power BI a las vistas y registrar una especialidad vía Power Apps & Integración & La nueva especialidad aparece en PostgreSQL y en el reporte de Power BI tras actualizar el dataset & Pendiente de ejecutar (requiere Power BI Desktop / Power Apps) \\
+\hline
+\caption{Reporte de pruebas iniciales (base de datos \textit{ginesalud} creada y validada el 09/08/2026)}
+\end{longtable}
+
+\subsubsection*{Análisis de rendimiento y posibles cuellos de botella}
+
+Se crearon índices sobre los campos más consultados según las historias de usuario
+(\textit{idx\_cita\_fecha}, \textit{idx\_cita\_paciente}, \textit{idx\_cita\_medico} e
+\textit{idx\_diagnostico\_expediente}), que dan soporte a las búsquedas frecuentes de HU9 y
+HU10 (buscar pacientes y consultar agenda por médico).
+
+Como posible cuello de botella se identifica que, si Tableau y Power BI se conectan en modo
+de \textit{consulta en vivo} directamente sobre la base de datos operativa, las consultas de
+los dashboards podrían competir con las operaciones diarias de la clínica (registro de citas
+y expedientes) en horas de alta demanda. Por ello, se recomienda el uso de
+\textbf{extractos programados} (Tableau \textit{Hyper extracts} y actualización periódica del
+dataset en Power BI) en lugar de conexión en vivo permanente, según lo documentado en los
+README de \texttt{/bi}.
+
+\subsubsection*{Mejoras en el diseño de la interfaz de usuario}
+
+Se identificaron mejoras a incorporar en los mockups de las pantallas principales
+(registro de paciente, agenda de citas y expediente clínico), priorizando la simplicidad para
+el personal de recepción y la visibilidad rápida del historial clínico para los ginecólogos.
+
+% --- PLACEHOLDER FIGURA 7 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura7_mockups_interfaz.png}
+\placeholderimg{12}{7}{Figura 7. Mockups de las pantallas principales del sistema}
+
+\subsubsection*{Evidencia del prototipo}
+
+Las capturas de pantalla del prototipo (tablas creadas, dashboard de Tableau, reporte de
+Power BI y formulario de Power Apps) y el video corto de demostración se incorporarán en
+la carpeta \texttt{/prototipo} del repositorio, según el detalle pendiente listado en
+\texttt{prototipo/README.md}.
+
+% --- PLACEHOLDER FIGURA 8 ---
+% Reemplazar por: \includegraphics[width=0.9\textwidth]{figura8_captura_prototipo.png}
+\placeholderimg{12}{7}{Figura 8. Captura del prototipo funcional (base de datos y dashboards)}
+
+% ===================== CONCLUSIONES =====================
+\section{Conclusiones}
+
+% NOTA: estas conclusiones reflejan el avance del proyecto hasta la Semana 5. Deben
+% revisarse y ampliarse en la Semana 6 una vez completados el prototipo, la presentación
+% oral y el video resumen, para reflejar los resultados finales del proyecto.
+
+El desarrollo de este proyecto permitió aplicar de forma integral los conocimientos
+adquiridos en el curso de Análisis de Sistemas I, abarcando desde la definición del negocio
+hasta la construcción de un prototipo funcional. A través de la metodología ágil SCRUM se
+logró organizar el trabajo del equipo en iteraciones claras, priorizando siempre los
+requerimientos de mayor valor para la clínica GineSalud, como la gestión de pacientes, citas
+y expedientes clínicos.
+
+El proceso de análisis y refinamiento progresivo de los requisitos, historias de usuario y
+diagramas UML (casos de uso, actividad, clases y despliegue) permitió construir una
+arquitectura cliente-servidor de tres capas sólida, escalable y preparada para incorporar
+herramientas de inteligencia de negocio. En particular, la incorporación conjunta de
+\textbf{Tableau} para la representación visual de la información y de \textbf{Power
+BI/Power Apps} para el ingreso y mantenimiento de catálogos administrativos demostró
+que ambas herramientas pueden complementarse dentro de una misma arquitectura,
+siempre que se documenten con claridad sus responsabilidades técnicas.
+
+El análisis de factibilidad, la identificación de la ruta crítica y el análisis de riesgos
+evidenciaron la importancia de planificar no solo el tiempo y el presupuesto del proyecto,
+sino también los riesgos propios del dominio (protección de datos clínicos sensibles) y de
+las nuevas herramientas incorporadas. Finalmente, la implementación del modelo de datos
+en PostgreSQL como prototipo funcional permitió validar en la práctica las reglas de
+negocio definidas durante el análisis, como la prevención de conflictos de horario en la
+agenda médica.
+
+En conjunto, el proyecto demuestra que un proceso de análisis de sistemas bien
+documentado y ejecutado de forma iterativa reduce el riesgo técnico del desarrollo
+posterior y facilita la comunicación entre el equipo consultor (Tico Tech) y el cliente
+(GineSalud).
+
+% ===================== REFERENCIAS =====================
+\section{Referencias}
+
+\begin{itemize}[leftmargin=1.2cm]
+    \item Schwaber, K., \& Sutherland, J. (2020). \textit{La Guía de Scrum: La Guía
+    Definitiva de Scrum: Las Reglas del Juego}. \url{https://scrumguides.org}
+
+    \item PostgreSQL Global Development Group. (2024). \textit{PostgreSQL Documentation}.
+    \url{https://www.postgresql.org/docs/}
+
+    \item Django Software Foundation. (2024). \textit{Django Documentation}.
+    \url{https://docs.djangoproject.com/}
+
+    \item Tableau Software, LLC. (2024). \textit{Tableau Help}.
+    \url{https://help.tableau.com}
+
+    \item Microsoft. (2024). \textit{Documentación de Power BI}.
+    \url{https://learn.microsoft.com/power-bi/}
+
+    \item Microsoft. (2024). \textit{Documentación de Power Apps}.
+    \url{https://learn.microsoft.com/power-apps/}
+
+    \item Object Management Group (OMG). (2017). \textit{Unified Modeling Language (UML)
+    Specification, versión 2.5.1}. \url{https://www.omg.org/spec/UML/}
+
+    \item Project Management Institute. (2021). \textit{A Guide to the Project Management
+    Body of Knowledge (PMBOK Guide)} (7.\textsuperscript{a} ed.). Project Management
+    Institute.
+
+    \item Asamblea Legislativa de la República de Costa Rica. (2011). \textit{Ley N.°
+    8968, Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales}.
+
+    \item Mata Guerrero, J. J. (2026). \textit{Proyecto -- Análisis de Sistemas 1}
+    [Instrucciones de curso]. Universidad Politécnica Internacional.
+\end{itemize}
+
+\end{document}

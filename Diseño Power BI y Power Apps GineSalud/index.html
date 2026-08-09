@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#742774"/><rect x="30" y="30" width="40" height="40" rx="8" fill="#f2c811"/><text x="50" y="60" font-family="Segoe UI,sans-serif" font-size="26" font-weight="800" fill="#201f1e" text-anchor="middle">G</text></svg></template>
+<helmet>
+<style>
+  :root{
+    --canvas:#f3f2f1; --card:#ffffff; --ink:#201f1e; --muted:#605e5c; --line:#edebe9;
+    --soft:#faf9f8; --header:#201f1e; --headink:#ffffff; --pbi:#f2c811; --apps:#742774;
+    --appsSoft:#f3eaf6; --shadow:0 1.6px 3.6px rgba(0,0,0,.10),0 .3px .9px rgba(0,0,0,.07);
+    --c1:#118dff; --c2:#12239e; --c3:#e66c37; --c4:#d64550; --ok:#107c10;
+  }
+  [data-theme="dark"]{
+    --canvas:#1b1a19; --card:#252423; --ink:#f3f2f1; --muted:#a19f9d; --line:#3b3a39;
+    --soft:#2b2a29; --header:#0f0f0f; --headink:#ffffff; --appsSoft:#3a2440;
+    --shadow:0 1.6px 3.6px rgba(0,0,0,.45),0 .3px .9px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  body{margin:0}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+  input:focus,textarea:focus{outline:2px solid var(--apps);outline-offset:0}
+  a{color:var(--c1);text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh;background:var(--canvas);color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <header style="display:flex;align-items:center;gap:18px;height:52px;padding:0 18px;background:var(--header);color:var(--headink)">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:26px;height:26px;border-radius:6px;background:var(--pbi);display:flex;align-items:center;justify-content:center;color:#201f1e;font-weight:800;font-size:15px">G</div>
+      <div style="line-height:1.05">
+        <div style="font-size:14px;font-weight:700">GineSalud</div>
+        <div style="font-size:11px;color:#c8c6c4">Tico Tech · BI &amp; Apps</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:4px;margin-left:8px;background:rgba(255,255,255,.06);padding:3px;border-radius:8px">
+      <button onClick="{{ setBI }}" style="{{ tabBI }}">Power BI · Reporte</button>
+      <button onClick="{{ setApps }}" style="{{ tabApps }}">Power Apps · Catálogo</button>
+    </div>
+
+    <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+      <span style="font-size:12px;color:#c8c6c4">HU13 · Catálogos administrativos</span>
+      <button onClick="{{ toggleTheme }}" style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:16px;height:30px;padding:0 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ themeLabel }}</button>
+    </div>
+  </header>
+
+  <!-- ============ POWER BI VIEW ============ -->
+  <sc-if value="{{ isBI }}" hint-placeholder-val="{{ true }}">
+  <main style="padding:18px 22px 40px">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+      <div>
+        <div style="font-size:20px;font-weight:700">Reporte operativo de citas</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:2px">Power BI Desktop · dataset en modo <b>Import</b> · orígenes <code style="font-family:Consolas,monospace">vw_citas_resumen</code>, <code style="font-family:Consolas,monospace">vw_indicadores_especialidad</code></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-size:11px;font-weight:700;color:#8a6d00;background:#fff4ce;border:1px solid #f6e5a0;border-radius:14px;padding:4px 10px">◆ KPIs y gráficos: datos ilustrativos</span>
+        <span style="font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:14px;padding:4px 10px">Actualizado 2026-08-09</span>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 16px 14px;border-top:3px solid var(--c1)">
+        <div style="font-size:12px;color:var(--muted);font-weight:600">Citas totales</div>
+        <div style="font-size:34px;font-weight:700;letter-spacing:-1px;margin-top:4px">248</div>
+        <div style="font-size:11.5px;color:var(--ok);margin-top:2px">▲ 12% vs. mes anterior</div>
+      </div>
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 16px 14px;border-top:3px solid var(--c3)">
+        <div style="font-size:12px;color:var(--muted);font-weight:600">% citas atendidas</div>
+        <div style="font-size:34px;font-weight:700;letter-spacing:-1px;margin-top:4px">82%</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">203 de 248 citas</div>
+      </div>
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 16px 14px;border-top:3px solid var(--c2)">
+        <div style="font-size:12px;color:var(--muted);font-weight:600">Tiempo prom. de registro</div>
+        <div style="font-size:34px;font-weight:700;letter-spacing:-1px;margin-top:4px">1.8<span style="font-size:15px;font-weight:600;color:var(--muted)"> min</span></div>
+        <div style="font-size:11.5px;color:var(--ok);margin-top:2px">▼ 0.4 min vs. meta 2.5</div>
+      </div>
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 16px 14px;border-top:3px solid var(--ok)">
+        <div style="font-size:12px;color:var(--muted);font-weight:600">Disponibilidad del sistema</div>
+        <div style="font-size:34px;font-weight:700;letter-spacing:-1px;margin-top:4px">99.6%</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">Últimos 30 días</div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-top:14px">
+      <!-- bar chart -->
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div style="font-size:13.5px;font-weight:700">Citas por especialidad</div>
+          <span style="font-size:10.5px;color:var(--muted)">Ilustrativo</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span>Ginecología General</span><span style="font-weight:700">142</span></div>
+            <div style="height:16px;background:var(--soft);border-radius:3px"><div style="height:100%;width:100%;background:var(--c1);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span>Obstetricia</span><span style="font-weight:700">68</span></div>
+            <div style="height:16px;background:var(--soft);border-radius:3px"><div style="height:100%;width:48%;background:var(--c1);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span>Endocrinología Ginecológica</span><span style="font-weight:700">38</span></div>
+            <div style="height:16px;background:var(--soft);border-radius:3px"><div style="height:100%;width:27%;background:var(--c1);border-radius:3px"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- donut estado -->
+      <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-size:13.5px;font-weight:700">Estado de citas</div>
+          <span style="font-size:10.5px;color:var(--muted)">Ilustrativo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px">
+          <div style="position:relative;width:132px;height:132px;flex:none;border-radius:50%;background:conic-gradient(var(--c1) 0 45.2%,var(--c2) 45.2% 69.8%,var(--c3) 69.8% 91.5%,var(--c4) 91.5% 100%)">
+            <div style="position:absolute;inset:26px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <div style="font-size:22px;font-weight:700;line-height:1">248</div>
+              <div style="font-size:10px;color:var(--muted)">citas</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;flex:1">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:var(--c1)"></span>Atendida <b style="margin-left:auto">112</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:var(--c2)"></span>Confirmada <b style="margin-left:auto">61</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:var(--c3)"></span>Programada <b style="margin-left:auto">54</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:var(--c4)"></span>Cancelada <b style="margin-left:auto">21</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real data table -->
+    <div style="background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:16px 18px;margin-top:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <div style="font-size:13.5px;font-weight:700">Detalle de citas — <code style="font-family:Consolas,monospace;font-size:12px">vw_citas_resumen</code></div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:2px">Datos que devuelve la vista contra la base <code style="font-family:Consolas,monospace">ginesalud</code></div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:#0b6a0b;background:#dff6dd;border:1px solid #b7e0b4;border-radius:14px;padding:4px 10px">● Datos reales de prueba</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+          <thead>
+            <tr style="text-align:left;color:var(--muted)">
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">id_cita</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">fecha_cita</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">hora_cita</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">estado</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">paciente</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">medico</th>
+              <th style="padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600">especialidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">1</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">2026-08-20</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">09:00</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;color:var(--c2);background:color-mix(in srgb,var(--c2) 14%,transparent);border-radius:10px;padding:2px 9px">Confirmada</span></td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">María José Rojas</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">Dra. Ana Méndez</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">Ginecología General</td>
+            </tr>
+            <tr>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">2</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">2026-08-20</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">10:00</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;color:var(--c3);background:color-mix(in srgb,var(--c3) 16%,transparent);border-radius:10px;padding:2px 9px">Programada</span></td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">Laura Fernández</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">Dra. Ana Méndez</td>
+              <td style="padding:9px 10px;border-bottom:1px solid var(--line)">Ginecología General</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px;display:flex;align-items:center;gap:6px">
+        <span style="color:var(--pbi)">ⓘ</span> Power BI es de solo lectura: refleja los datos; el alta/edición de catálogos se hace en la pestaña <b>Power Apps · Catálogo</b> (HU13).
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============ POWER APPS VIEW ============ -->
+  <sc-if value="{{ isApps }}" hint-placeholder-val="{{ true }}">
+  <main style="padding:22px;display:flex;justify-content:center">
+    <div style="width:100%;max-width:1000px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+        <div>
+          <div style="font-size:20px;font-weight:700">Catálogo de especialidades</div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:2px">Power Apps · Canvas App · conector PostgreSQL → tabla <code style="font-family:Consolas,monospace">especialidad</code></div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:#0b6a0b;background:#dff6dd;border:1px solid #b7e0b4;border-radius:14px;padding:4px 10px">● 3 especialidades reales</span>
+      </div>
+
+      <!-- Canvas app frame -->
+      <div style="background:var(--card);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)">
+        <div style="height:44px;background:var(--apps);color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px">
+          <span style="width:20px;height:20px;border-radius:5px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:12px">▦</span>
+          <span style="font-weight:600;font-size:13.5px">GineSalud · Catálogos administrativos</span>
+          <span style="margin-left:auto;font-size:11.5px;opacity:.85">Rol: Administrador</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1.05fr">
+          <!-- Gallery -->
+          <div style="border-right:1px solid var(--line);padding:14px 16px;background:var(--soft)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <span style="font-size:12px;font-weight:700;color:var(--muted)">ESPECIALIDADES ({{ count }})</span>
+              <button onClick="{{ onNew }}" style="background:var(--apps);color:#fff;border:none;border-radius:5px;height:28px;padding:0 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">+ Nueva</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ specialties }}" as="sp" hint-placeholder-count="3">
+                <div onClick="{{ sp.onSelect }}" style="{{ sp.rowStyle }}">
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sp.nombre_especialidad }}</div>
+                    <div style="font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sp.descripcion }}</div>
+                  </div>
+                  <button onClick="{{ sp.onDel }}" title="Eliminar" style="flex:none;width:26px;height:26px;border-radius:5px;border:1px solid var(--line);background:var(--card);color:var(--c4);cursor:pointer;font-size:13px">✕</button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- Edit form -->
+          <div style="padding:20px 22px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px">
+              <span style="width:9px;height:9px;border-radius:50%;background:var(--apps)"></span>
+              <div style="font-size:15px;font-weight:700">{{ formTitle }}</div>
+            </div>
+
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px">nombre_especialidad <span style="color:var(--c4)">*</span></label>
+            <input value="{{ nombre }}" onChange="{{ onNombre }}" placeholder="p. ej. Ginecología General" style="width:100%;height:38px;padding:0 12px;font-size:13.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:6px;font-family:inherit;margin-bottom:16px" />
+
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px">descripcion</label>
+            <textarea value="{{ descripcion }}" onChange="{{ onDesc }}" rows="4" placeholder="Descripción breve de la especialidad" style="width:100%;padding:10px 12px;font-size:13.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:6px;font-family:inherit;resize:vertical;margin-bottom:20px"></textarea>
+
+            <div style="display:flex;gap:10px">
+              <button onClick="{{ onSave }}" style="background:var(--apps);color:#fff;border:none;border-radius:6px;height:40px;padding:0 22px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 1px 2px rgba(0,0,0,.15)">{{ saveLabel }}</button>
+              <button onClick="{{ onNew }}" style="background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px;height:40px;padding:0 20px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit">Limpiar</button>
+            </div>
+
+            <div style="margin-top:18px;padding:11px 13px;background:var(--appsSoft);border-radius:7px;font-size:11.5px;color:var(--ink);line-height:1.45">
+              <b>HU13</b> — Este formulario ejecuta el <code style="font-family:Consolas,monospace">INSERT</code>/<code style="font-family:Consolas,monospace">UPDATE</code> sobre PostgreSQL. Power BI luego refleja el cambio al actualizar su dataset.
+            </div>
+            <sc-if value="{{ saved }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:10px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ok);font-weight:600"><span>✓</span> {{ savedMsg }}</div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:12px;text-align:center">Diseño de referencia · los cambios son locales a esta maqueta y no persisten en la base de datos.</div>
+    </div>
+  </main>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:820}}">
+class Component extends DCLogic {
+  state = {
+    theme: 'light',
+    view: 'bi',
+    nombre: '',
+    descripcion: '',
+    selectedId: null,
+    saved: false,
+    savedMsg: '',
+    nextId: 4,
+    specialties: [
+      { id: 1, nombre_especialidad: 'Ginecología General', descripcion: 'Consultas ginecológicas generales' },
+      { id: 2, nombre_especialidad: 'Obstetricia', descripcion: 'Seguimiento de embarazo y parto' },
+      { id: 3, nombre_especialidad: 'Endocrinología Ginecológica', descripcion: 'Trastornos hormonales relacionados a la salud reproductiva' },
+    ],
+  };
+
+  selectSpec(id) {
+    const s = this.state.specialties.find(x => x.id === id);
+    if (!s) return;
+    this.setState({ selectedId: id, nombre: s.nombre_especialidad, descripcion: s.descripcion, saved: false });
+  }
+
+  delSpec(id) {
+    this.setState(st => {
+      const specialties = st.specialties.filter(x => x.id !== id);
+      const clearing = st.selectedId === id;
+      return {
+        specialties,
+        selectedId: clearing ? null : st.selectedId,
+        nombre: clearing ? '' : st.nombre,
+        descripcion: clearing ? '' : st.descripcion,
+        saved: false,
+      };
+    });
+  }
+
+  save() {
+    const nombre = this.state.nombre.trim();
+    if (!nombre) return;
+    const descripcion = this.state.descripcion.trim();
+    this.setState(st => {
+      if (st.selectedId != null) {
+        return {
+          specialties: st.specialties.map(x => x.id === st.selectedId ? { ...x, nombre_especialidad: nombre, descripcion } : x),
+          saved: true, savedMsg: 'Especialidad actualizada (UPDATE)',
+        };
+      }
+      const id = st.nextId;
+      return {
+        specialties: [...st.specialties, { id, nombre_especialidad: nombre, descripcion }],
+        selectedId: id, nextId: id + 1, saved: true, savedMsg: 'Especialidad registrada (INSERT)',
+      };
+    });
+  }
+
+  renderVals() {
+    const { theme, view, nombre, descripcion, selectedId, specialties, saved, savedMsg } = this.state;
+    const isDark = theme === 'dark';
+    const activeTab = 'background:#fff;color:#201f1e;border:none;border-radius:6px;height:26px;padding:0 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit';
+    const idleTab = 'background:transparent;color:#e1dfdd;border:none;border-radius:6px;height:26px;padding:0 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit';
+    const items = specialties.map(s => ({
+      ...s,
+      onSelect: () => this.selectSpec(s.id),
+      onDel: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.delSpec(s.id); },
+      rowStyle: 'display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:7px;cursor:pointer;border:1px solid ' +
+        (s.id === selectedId ? 'var(--apps)' : 'var(--line)') +
+        ';background:' + (s.id === selectedId ? 'var(--appsSoft)' : 'var(--card)') +
+        (s.id === selectedId ? ';box-shadow:inset 3px 0 0 var(--apps)' : ''),
+    }));
+    return {
+      theme, isDark,
+      isBI: view === 'bi', isApps: view === 'apps',
+      tabBI: view === 'bi' ? activeTab : idleTab,
+      tabApps: view === 'apps' ? activeTab : idleTab,
+      setBI: () => this.setState({ view: 'bi' }),
+      setApps: () => this.setState({ view: 'apps' }),
+      toggleTheme: () => this.setState(st => ({ theme: st.theme === 'dark' ? 'light' : 'dark' })),
+      themeLabel: isDark ? '☾  Oscuro' : '☀  Claro',
+      specialties: items,
+      count: specialties.length,
+      nombre, descripcion,
+      formTitle: selectedId != null ? 'Editar especialidad' : 'Nueva especialidad',
+      saveLabel: selectedId != null ? 'Guardar cambios' : 'Registrar',
+      onNombre: e => this.setState({ nombre: e.target.value, saved: false }),
+      onDesc: e => this.setState({ descripcion: e.target.value, saved: false }),
+      onSave: () => this.save(),
+      onNew: () => this.setState({ selectedId: null, nombre: '', descripcion: '', saved: false }),
+      saved, savedMsg,
+    };
+  }
+}
+</script>
+</body>
+</html>
