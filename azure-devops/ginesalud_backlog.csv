@@ -1,4 +1,4 @@
-Work Item Type,Title,State,Tags,Description
+﻿Work Item Type,Title,State,Tags,Description
 User Story,HU1: Registrar nuevas pacientes en el sistema,New,Prioridad-Alta,"Como recepcionista de la clínica, quiero registrar nuevas pacientes en el sistema, para mantener actualizada la información y agilizar el proceso de atención."
 User Story,HU2: Programar modificar y cancelar citas médicas,New,Prioridad-Alta,"Como recepcionista de la clínica, quiero programar, modificar y cancelar citas médicas, para organizar la agenda de los especialistas y evitar conflictos de horarios."
 User Story,HU3: Consultar expediente clínico de una paciente,New,Prioridad-Alta,"Como ginecólogo, quiero consultar el expediente clínico de una paciente, para conocer su historial médico antes de realizar la consulta."
