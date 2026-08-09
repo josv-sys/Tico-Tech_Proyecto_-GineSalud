@@ -24,9 +24,9 @@ Cronograma de contenido por semana:
 |---|---|---|
 | 1 | Negocio, SCRUM (roles/tablero/backlog), historias de usuario, presupuesto, story points, arquitectura, primeros UML | ✅ Completo |
 | 2 | Requisitos funcionales/no funcionales, historias adicionales, caso de uso mejorado, roles y permisos, stack técnico, tablero SCRUM | ✅ Completo |
-| 3 | Diagramas (actividad, clases, despliegue), refinamiento de arquitectura, factibilidad técnica/económica, herramientas concretas | ✅ Texto completo — faltan las 3 imágenes de los diagramas |
+| 3 | Diagramas (actividad, clases, despliegue), refinamiento de arquitectura, factibilidad técnica/económica, herramientas concretas | ✅ Completo (diagramas generados en TikZ) |
 | 4 | Ruta crítica, estimación de tiempos/recursos, análisis de riesgos, métricas clave | ✅ Completo |
-| 5 | Prototipo funcional, pruebas iniciales, análisis de rendimiento, mejoras de interfaz | ✅ Prototipo SQL ejecutado y probado — faltan capturas/mockup de interfaz |
+| 5 | Prototipo funcional, pruebas iniciales, análisis de rendimiento, mejoras de interfaz | ✅ Prototipo SQL ejecutado y probado — falta la captura de evidencia |
 | 6 | Entrega final (PDF), presentación oral, video resumen, defensa | ⬜ Pendiente |
 
 ## Estructura del repositorio
@@ -68,23 +68,20 @@ Si GitHub Pages está activado en este repositorio (`Settings` → `Pages`, rama
 
 ## Placeholders que faltan en el `.tex` antes de compilar el PDF final
 
-Se recortaron los 2 placeholders no esenciales (Gantt de ruta crítica y mockups de
-interfaz — ver el commit "Rediseño visual" para el detalle de por qué). Quedan **8**:
+Las Figuras 1 a 5 (arquitectura, casos de uso, actividad, clases, despliegue) ya se
+generaron directamente en TikZ dentro del `.tex` — no requieren imagen externa. Solo
+quedan **3 capturas de pantalla** por tomar:
 
-| # | Placeholder | Tipo | Cómo resolverlo |
-|---|---|---|---|
-| 1 | Logo de la Universidad (portada) | Captura/asset | Agregar el logo real de UPI como imagen |
-| 2 | Figura 1 — Arquitectura del sistema | Diagrama | Cajas: Presentación / Lógica / Datos / Tableau-PowerBI |
-| 3 | Figura 2 — Diagrama de casos de uso | Diagrama | UML: actores Recepcionista/Ginecólogo/Administrador + HU1-HU13 |
-| 4 | Captura del tablero Azure Boards | **Captura (SS)** | Screenshot real del Sprint en Azure DevOps, una vez importado el backlog |
-| 5 | Figura 3 — Diagrama de actividad | Diagrama | Flujo "Registrar y confirmar cita médica" |
-| 6 | Figura 4 — Diagrama de clases | Diagrama | Entidades del `01_schema.sql` (Paciente, Cita, Médico, etc.) |
-| 7 | Figura 5 — Diagrama de despliegue | Diagrama | Cliente / Servidor Django / PostgreSQL / Tableau / Power BI |
-| 8 | Figura 6 — Captura del prototipo funcional | **Captura (SS)** | Screenshot de pgAdmin (tablas de `ginesalud`) + del mockup de Power BI/Power Apps |
+| # | Placeholder | Dónde tomarla |
+|---|---|---|
+| 1 | Logo de la Universidad (portada) | Sitio de la UPI, o pedirlo al profesor |
+| 2 | Captura del tablero Azure Boards | Tu proyecto de Azure DevOps, una vez importado `azure-devops/ginesalud_backlog.csv` |
+| 3 | Figura 6 — Captura del prototipo funcional | pgAdmin (tablas de `ginesalud`) + el mockup publicado de Power BI/Power Apps |
 
-> Solo el **1, 4 y 8 son capturas** (SS) de algo que ya existe — no requieren diseño
-> nuevo. El resto (2, 3, 5, 6, 7) son diagramas que hay que dibujar (a mano, en
-> draw.io/Lucidchart, o generados en LaTeX/TikZ).
+> Los diagramas TikZ no se pudieron compilar/verificar en el entorno donde se generaron
+> (no había instalación de LaTeX disponible). Si al compilar aparece algún error,
+> revisar primero el bloque `tikzpicture` de la figura señalada por el número de línea
+> del error.
 
 ## Próximos pasos sugeridos
 
