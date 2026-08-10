@@ -18,11 +18,9 @@ este repositorio (ver el README principal del proyecto para el enlace).
 
 ## Archivos
 
-- `index.html` / `GineSalud PowerBI y PowerApps.dc.html` — el mismo diseño (duplicado
-  para que cargue automáticamente en la raíz de la carpeta al publicarse con GitHub Pages).
+- `index.html` — el diseño; GitHub Pages lo sirve automáticamente al publicar esta carpeta.
 - `support.js` — motor de renderizado del canvas (carga React desde una CDN pública).
 
 > Nota: `ginesalud_bi_apps.html` no se subió a este repositorio porque es un
 > "loader" que depende de la infraestructura de Claude para resolver su contenido — no
-> funciona como página estática independiente. El archivo `.dc.html` de arriba sí es
-> autocontenido y es el que se usa para publicar.
+> funciona como página estática independiente.

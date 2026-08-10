@@ -9,8 +9,8 @@ información de la clínica ginecológica **GineSalud**, curso Análisis de Sist
 
 | # | Producto pedido | Dónde está | Enlace directo |
 |---|---|---|---|
-| 1 | **Documento técnico completo** (PDF, portada, índice, numeración) | Raíz del repo | [`Analisis_de_sistema_documento tecnico.pdf`](./Analisis_de_sistema_documento%20tecnico.pdf) |
-| 2 | **Video resumen** del proyecto (máx. 5 min) | Raíz del repo | [`Proyecto Analisis de Sistemas I-20260809_165321-Meeting Recording.mp4`](./Proyecto%20Analisis%20de%20Sistemas%20I-20260809_165321-Meeting%20Recording.mp4) |
+| 1 | **Documento técnico completo** (PDF, portada, índice, numeración) | Raíz del repo | [`Documento_Tecnico_GineSalud.pdf`](./Documento_Tecnico_GineSalud.pdf) |
+| 2 | **Video resumen** del proyecto (máx. 5 min) | Raíz del repo | [`Video_Resumen_GineSalud.mp4`](./Video_Resumen_GineSalud.mp4) |
 | 3 | **Presentación oral con cámara** | Se realiza en vivo en clase (no aplica archivo en el repo) | — |
 
 > El PDF se generó a partir de la fuente en LaTeX [`Proyecto_Analisis_Sistemas.tex`](./Proyecto_Analisis_Sistemas.tex),
@@ -72,11 +72,11 @@ numérica del proyecto pedida en las Semanas 1 y 4:
 
 ```
 Tico-Tech_Proyecto_-GineSalud/
-├── Analisis_de_sistema_documento tecnico.pdf   # 1. Documento técnico final (PDF)
-├── Proyecto Analisis de Sistemas I-...mp4       # 2. Video resumen del proyecto
+├── Documento_Tecnico_GineSalud.pdf               # 1. Documento técnico final (PDF)
+├── Video_Resumen_GineSalud.mp4                   # 2. Video resumen del proyecto
 ├── GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx  # Excel de cronograma/presupuesto/ruta crítica
 ├── Proyecto_Analisis_Sistemas.tex               # Fuente LaTeX del documento técnico
-├── Proyecto final analisis.pdf                  # Pautas/cronograma originales del profesor
+├── Instrucciones_Profesor.pdf                    # Pautas/cronograma originales del profesor (no es un entregable)
 ├── sql/                                          # Prototipo de base de datos (PostgreSQL, Semana 5)
 ├── azure-devops/                                 # CSV + instrucciones para el tablero de Azure Boards
 ├── Diseño Power BI y Power Apps GineSalud/       # Código fuente de la página web (mockup BI/Apps, GitHub Pages)
