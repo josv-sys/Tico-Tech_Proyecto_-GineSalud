@@ -54,12 +54,27 @@ esquema de `/sql` cargado: se pueden agregar pacientes, citas y especialidades d
 formulario y los gráficos de reportería se actualizan al instante con los datos reales de
 la base. Instrucciones para levantarlo en [`prototipo-web/README.md`](./prototipo-web/README.md).
 
+## 📊 Excel de cronograma, presupuesto y ruta crítica
+
+[`GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx`](./GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx)
+reúne en un solo libro, con fórmulas reales (no valores pegados), la justificación
+numérica del proyecto pedida en las Semanas 1 y 4:
+
+- **Cronograma** — las 6 semanas del curso y qué se entregó en cada una.
+- **Presupuesto** — presupuesto original (Semana 1), ajustado (Semana 3) y licenciamiento referencial de BI.
+- **Story Points** — esfuerzo estimado de las historias de usuario.
+- **Ruta Crítica (CPM)** — inicio/fin más temprano y más tardío y holgura por tarea, calculados con fórmulas de Excel (T1 → T3 → T4 → T6, 35 días hábiles).
+- **Recursos** — distribución de las 640 horas del proyecto entre los integrantes del equipo.
+- **Riesgos** — matriz de riesgos con severidad calculada (probabilidad × impacto).
+- **Métricas de éxito** — indicadores clave para evaluar el sistema.
+
 ## Estructura completa del repositorio
 
 ```
 Tico-Tech_Proyecto_-GineSalud/
 ├── Analisis_de_sistema_documento tecnico.pdf   # 1. Documento técnico final (PDF)
 ├── Proyecto Analisis de Sistemas I-...mp4       # 2. Video resumen del proyecto
+├── GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx  # Excel de cronograma/presupuesto/ruta crítica
 ├── Proyecto_Analisis_Sistemas.tex               # Fuente LaTeX del documento técnico
 ├── Proyecto final analisis.pdf                  # Pautas/cronograma originales del profesor
 ├── sql/                                          # Prototipo de base de datos (PostgreSQL, Semana 5)

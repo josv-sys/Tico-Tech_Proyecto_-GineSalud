@@ -8,3 +8,7 @@ Diseño Power BI y Power Apps GineSalud/.thumbnail
 prototipo-web/backend/.venv/
 prototipo-web/backend/__pycache__/
 prototipo-web/backend/**/__pycache__/
+
+# Archivos de bloqueo temporales de Microsoft Office
+~$*.xlsx
+~$*.docx
