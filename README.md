@@ -5,7 +5,7 @@ empresa consultora **Tico Tech** para el análisis, planificación y diseño del
 información de la clínica ginecológica **GineSalud**, curso Análisis de Sistemas I
 (Universidad Politécnica Internacional, Prof. Ing. José Javier Mata Guerrero).
 
-## 📍 Los 3 productos de entrega — dónde está cada uno
+##  Los 3 productos de entrega — dónde está cada uno
 
 | # | Producto pedido | Dónde está | Enlace directo |
 |---|---|---|---|
@@ -16,7 +16,7 @@ información de la clínica ginecológica **GineSalud**, curso Análisis de Sist
 > El PDF se generó a partir de la fuente en LaTeX [`Proyecto_Analisis_Sistemas.tex`](./Proyecto_Analisis_Sistemas.tex),
 > incluida también en el repo por si se necesita revisar o recompilar el documento.
 
-## 🌐 Página web del proyecto (mockup Power BI / Power Apps)
+##  Página web del proyecto (mockup Power BI / Power Apps)
 
 El prototipo de interfaz (dashboard de Power BI + formulario de Power Apps del catálogo
 de especialidades, HU13) está publicado como página web con GitHub Pages:
@@ -28,7 +28,7 @@ métricas de citas del proyecto (total de citas, % atendidas, citas por especial
 formulario de alta/edición de especialidades. El código fuente está en la carpeta
 [`Diseño Power BI y Power Apps GineSalud/`](./Diseño%20Power%20BI%20y%20Power%20Apps%20GineSalud/).
 
-## 📋 Tablero SCRUM / Azure Boards
+##  Tablero SCRUM / Azure Boards
 
 El backlog, las historias de usuario y el tablero SCRUM del proyecto se gestionan en
 Azure DevOps:
@@ -38,7 +38,7 @@ Azure DevOps:
 El CSV usado para poblar ese tablero, junto con las instrucciones de importación, está en
 [`azure-devops/`](./azure-devops/).
 
-## 🗄️ Prototipo de base de datos (Semana 5)
+##  Prototipo de base de datos (Semana 5)
 
 El modelo de datos definido en el documento técnico se implementó y probó en PostgreSQL:
 
@@ -46,7 +46,7 @@ El modelo de datos definido en el documento técnico se implementó y probó en 
 - [`sql/02_seed_data.sql`](./sql/02_seed_data.sql) — datos de prueba y casos de prueba de integridad.
 - [`sql/03_views_bi.sql`](./sql/03_views_bi.sql) — vistas de consumo para Tableau y Power BI (base de la página web y del prototipo funcional).
 
-## 🖥️ Prototipo funcional local (base de datos real)
+## Prototipo funcional local (base de datos real)
 
 Además del mockup estático de GitHub Pages, [`prototipo-web/`](./prototipo-web/) es una
 versión que corre en la computadora, conectada a un PostgreSQL real (vía Docker) con el
@@ -54,7 +54,7 @@ esquema de `/sql` cargado: se pueden agregar pacientes, citas y especialidades d
 formulario y los gráficos de reportería se actualizan al instante con los datos reales de
 la base. Instrucciones para levantarlo en [`prototipo-web/README.md`](./prototipo-web/README.md).
 
-## 📊 Excel de cronograma, presupuesto y ruta crítica
+## Excel de cronograma, presupuesto y ruta crítica
 
 [`GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx`](./GineSalud_Cronograma_Presupuesto_RutaCritica.xlsx)
 reúne en un solo libro, con fórmulas reales (no valores pegados), la justificación
