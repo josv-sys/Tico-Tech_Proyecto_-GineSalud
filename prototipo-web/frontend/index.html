@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>GineSalud — Prototipo BI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --border: #e2e6ea;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #7c3aed;
+    --primary-dark: #5b21b6;
+    --ok: #16a34a;
+    --warn: #d97706;
+    --danger: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 20px 32px;
+  }
+  header h1 { margin: 0; font-size: 22px; }
+  header p { margin: 4px 0 0; opacity: 0.85; font-size: 14px; }
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .kpi {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .kpi .value { font-size: 28px; font-weight: 700; }
+  .kpi .label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; align-items: start; }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .card h2 { margin: 0 0 14px; font-size: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  .badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .badge.Atendida { background: #dcfce7; color: var(--ok); }
+  .badge.Cancelada { background: #fee2e2; color: var(--danger); }
+  .badge.Programada { background: #fef3c7; color: var(--warn); }
+  .badge.Confirmada { background: #dbeafe; color: #1d4ed8; }
+  form { display: flex; flex-direction: column; gap: 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 3px; }
+  input, select, textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  button:hover { background: var(--primary-dark); }
+  .msg { font-size: 12px; margin-top: 4px; min-height: 16px; }
+  .msg.ok { color: var(--ok); }
+  .msg.err { color: var(--danger); }
+  .forms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .catalog-list { list-style: none; margin: 0 0 12px; padding: 0; font-size: 13px; }
+  .catalog-list li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GineSalud — Prototipo de reportería en vivo</h1>
+  <p>Conectado a PostgreSQL en tiempo real (no es un mockup estático) · Tico Tech / Análisis de Sistemas I</p>
+</header>
+
+<main>
+
+  <section class="kpis" id="kpis">
+    <div class="kpi"><div class="value" id="kpi-total">—</div><div class="label">Total de citas</div></div>
+    <div class="kpi"><div class="value" id="kpi-atendidas">—</div><div class="label">% atendidas</div></div>
+    <div class="kpi"><div class="value" id="kpi-programadas">—</div><div class="label">Programadas</div></div>
+    <div class="kpi"><div class="value" id="kpi-canceladas">—</div><div class="label">Canceladas</div></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2>Citas por especialidad</h2>
+      <canvas id="chartEspecialidad" height="160"></canvas>
+    </div>
+    <div class="card">
+      <h2>Distribución de estados</h2>
+      <canvas id="chartEstados" height="160"></canvas>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Citas recientes</h2>
+    <table id="tablaCitas">
+      <thead>
+        <tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Médico</th><th>Especialidad</th><th>Estado</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="forms-grid">
+
+    <div class="card">
+      <h2>Agendar cita</h2>
+      <form id="formCita">
+        <div>
+          <label>Paciente</label>
+          <select id="cita-paciente" required></select>
+        </div>
+        <div>
+          <label>Médico</label>
+          <select id="cita-medico" required></select>
+        </div>
+        <div class="row">
+          <div>
+            <label>Fecha</label>
+            <input type="date" id="cita-fecha" required />
+          </div>
+          <div>
+            <label>Hora</label>
+            <input type="time" id="cita-hora" required />
+          </div>
+        </div>
+        <div>
+          <label>Estado</label>
+          <select id="cita-estado">
+            <option>Programada</option>
+            <option>Confirmada</option>
+            <option>Atendida</option>
+            <option>Cancelada</option>
+          </select>
+        </div>
+        <div>
+          <label>Motivo</label>
+          <input type="text" id="cita-motivo" placeholder="Consulta de control..." />
+        </div>
+        <button type="submit">Agregar cita</button>
+        <div class="msg" id="msg-cita"></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Registrar paciente</h2>
+      <form id="formPaciente">
+        <div>
+          <label>Nombre completo</label>
+          <input type="text" id="pac-nombre" required />
+        </div>
+        <div>
+          <label>Cédula</label>
+          <input type="text" id="pac-cedula" required />
+        </div>
+        <div>
+          <label>Fecha de nacimiento</label>
+          <input type="date" id="pac-nacimiento" required />
+        </div>
+        <div>
+          <label>Teléfono</label>
+          <input type="text" id="pac-telefono" />
+        </div>
+        <div>
+          <label>Correo</label>
+          <input type="email" id="pac-correo" />
+        </div>
+        <button type="submit">Registrar paciente</button>
+        <div class="msg" id="msg-paciente"></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Catálogo de especialidades</h2>
+      <ul class="catalog-list" id="listaEspecialidades"></ul>
+      <form id="formEspecialidad">
+        <div>
+          <label>Nombre</label>
+          <input type="text" id="esp-nombre" required />
+        </div>
+        <div>
+          <label>Descripción</label>
+          <input type="text" id="esp-descripcion" />
+        </div>
+        <button type="submit">Agregar especialidad</button>
+        <div class="msg" id="msg-especialidad"></div>
+      </form>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>Prototipo funcional — datos reales en PostgreSQL, sin conexión a Tableau/Power BI (esta página cumple ese rol para la demo local).</footer>
+
+<script>
+const api = (path, opts) => fetch(`/api${path}`, opts).then(async r => {
+  const body = await r.json().catch(() => null);
+  if (!r.ok) throw new Error(body?.detail || 'Error inesperado');
+  return body;
+});
+
+let chartEspecialidad, chartEstados;
+
+async function cargarResumen() {
+  const r = await api('/reportes/resumen');
+  document.getElementById('kpi-total').textContent = r.total_citas;
+  document.getElementById('kpi-atendidas').textContent = r.porcentaje_atendidas + '%';
+  document.getElementById('kpi-programadas').textContent = r.citas_programadas;
+  document.getElementById('kpi-canceladas').textContent = r.citas_canceladas;
+
+  const ctx = document.getElementById('chartEstados');
+  const data = {
+    labels: ['Atendidas', 'Programadas', 'Confirmadas', 'Canceladas'],
+    datasets: [{
+      data: [r.citas_atendidas, r.citas_programadas, r.citas_confirmadas, r.citas_canceladas],
+      backgroundColor: ['#16a34a', '#d97706', '#1d4ed8', '#dc2626'],
+    }],
+  };
+  if (chartEstados) { chartEstados.data = data; chartEstados.update(); }
+  else chartEstados = new Chart(ctx, { type: 'doughnut', data, options: { plugins: { legend: { position: 'bottom' } } } });
+}
+
+async function cargarIndicadores() {
+  const rows = await api('/reportes/indicadores');
+  const ctx = document.getElementById('chartEspecialidad');
+  const data = {
+    labels: rows.map(r => r.especialidad),
+    datasets: [
+      { label: 'Total', data: rows.map(r => r.total_citas), backgroundColor: '#7c3aed' },
+      { label: 'Atendidas', data: rows.map(r => r.citas_atendidas), backgroundColor: '#16a34a' },
+    ],
+  };
+  if (chartEspecialidad) { chartEspecialidad.data = data; chartEspecialidad.update(); }
+  else chartEspecialidad = new Chart(ctx, { type: 'bar', data, options: { responsive: true, scales: { y: { beginAtZero: true } } } });
+}
+
+async function cargarCitas() {
+  const rows = await api('/citas');
+  const tbody = document.querySelector('#tablaCitas tbody');
+  tbody.innerHTML = rows.map(c => `
+    <tr>
+      <td>${c.fecha_cita}</td>
+      <td>${c.hora_cita}</td>
+      <td>${c.paciente}</td>
+      <td>${c.medico}</td>
+      <td>${c.especialidad}</td>
+      <td><span class="badge ${c.estado}">${c.estado}</span></td>
+    </tr>`).join('');
+}
+
+async function cargarPacientesSelect() {
+  const rows = await api('/pacientes');
+  document.getElementById('cita-paciente').innerHTML =
+    rows.map(p => `<option value="${p.id_paciente}">${p.nombre_completo}</option>`).join('');
+}
+
+async function cargarMedicosSelect() {
+  const rows = await api('/medicos');
+  document.getElementById('cita-medico').innerHTML =
+    rows.map(m => `<option value="${m.id_medico}">${m.nombre_completo} — ${m.especialidad}</option>`).join('');
+}
+
+async function cargarEspecialidades() {
+  const rows = await api('/especialidades');
+  document.getElementById('listaEspecialidades').innerHTML =
+    rows.map(e => `<li><strong>${e.nombre_especialidad}</strong> — ${e.descripcion ?? ''}</li>`).join('');
+}
+
+async function refrescarTodo() {
+  await Promise.all([cargarResumen(), cargarIndicadores(), cargarCitas(), cargarPacientesSelect(), cargarMedicosSelect(), cargarEspecialidades()]);
+}
+
+function showMsg(id, text, ok) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'msg ' + (ok ? 'ok' : 'err');
+}
+
+document.getElementById('formCita').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  try {
+    await api('/citas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id_paciente: Number(document.getElementById('cita-paciente').value),
+        id_medico: Number(document.getElementById('cita-medico').value),
+        fecha_cita: document.getElementById('cita-fecha').value,
+        hora_cita: document.getElementById('cita-hora').value,
+        estado: document.getElementById('cita-estado').value,
+        motivo: document.getElementById('cita-motivo').value,
+      }),
+    });
+    showMsg('msg-cita', 'Cita agregada.', true);
+    e.target.reset();
+    await Promise.all([cargarResumen(), cargarIndicadores(), cargarCitas()]);
+  } catch (err) { showMsg('msg-cita', err.message, false); }
+});
+
+document.getElementById('formPaciente').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  try {
+    await api('/pacientes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nombre_completo: document.getElementById('pac-nombre').value,
+        cedula: document.getElementById('pac-cedula').value,
+        fecha_nacimiento: document.getElementById('pac-nacimiento').value,
+        telefono: document.getElementById('pac-telefono').value,
+        correo: document.getElementById('pac-correo').value,
+      }),
+    });
+    showMsg('msg-paciente', 'Paciente registrado.', true);
+    e.target.reset();
+    await cargarPacientesSelect();
+  } catch (err) { showMsg('msg-paciente', err.message, false); }
+});
+
+document.getElementById('formEspecialidad').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  try {
+    await api('/especialidades', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nombre_especialidad: document.getElementById('esp-nombre').value,
+        descripcion: document.getElementById('esp-descripcion').value,
+      }),
+    });
+    showMsg('msg-especialidad', 'Especialidad agregada.', true);
+    e.target.reset();
+    await Promise.all([cargarEspecialidades(), cargarIndicadores()]);
+  } catch (err) { showMsg('msg-especialidad', err.message, false); }
+});
+
+refrescarTodo();
+</script>
+
+</body>
+</html>

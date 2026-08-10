@@ -44,7 +44,15 @@ El modelo de datos definido en el documento técnico se implementó y probó en 
 
 - [`sql/01_schema.sql`](./sql/01_schema.sql) — tablas, llaves foráneas, restricciones, índices.
 - [`sql/02_seed_data.sql`](./sql/02_seed_data.sql) — datos de prueba y casos de prueba de integridad.
-- [`sql/03_views_bi.sql`](./sql/03_views_bi.sql) — vistas de consumo para Tableau y Power BI (base de la página web del punto anterior).
+- [`sql/03_views_bi.sql`](./sql/03_views_bi.sql) — vistas de consumo para Tableau y Power BI (base de la página web y del prototipo funcional).
+
+## 🖥️ Prototipo funcional local (base de datos real)
+
+Además del mockup estático de GitHub Pages, [`prototipo-web/`](./prototipo-web/) es una
+versión que corre en la computadora, conectada a un PostgreSQL real (vía Docker) con el
+esquema de `/sql` cargado: se pueden agregar pacientes, citas y especialidades desde un
+formulario y los gráficos de reportería se actualizan al instante con los datos reales de
+la base. Instrucciones para levantarlo en [`prototipo-web/README.md`](./prototipo-web/README.md).
 
 ## Estructura completa del repositorio
 
@@ -56,7 +64,8 @@ Tico-Tech_Proyecto_-GineSalud/
 ├── Proyecto final analisis.pdf                  # Pautas/cronograma originales del profesor
 ├── sql/                                          # Prototipo de base de datos (PostgreSQL, Semana 5)
 ├── azure-devops/                                 # CSV + instrucciones para el tablero de Azure Boards
-└── Diseño Power BI y Power Apps GineSalud/       # Código fuente de la página web (mockup BI/Apps)
+├── Diseño Power BI y Power Apps GineSalud/       # Código fuente de la página web (mockup BI/Apps, GitHub Pages)
+└── prototipo-web/                                # Prototipo funcional local (FastAPI + PostgreSQL real)
 ```
 
 ## Cómo se relaciona todo
@@ -66,7 +75,8 @@ Tico-Tech_Proyecto_-GineSalud/
 2. El modelo de datos definido ahí se implementó de verdad en **`/sql`**, probado contra
    PostgreSQL.
 3. Esas mismas vistas de datos alimentan conceptualmente el **mockup de Power BI / Power
-   Apps**, publicado como la página web enlazada arriba.
+   Apps** publicado en GitHub Pages, y de verdad al **prototipo funcional local**
+   (`prototipo-web/`), que sí lee y escribe en PostgreSQL.
 4. El trabajo se planificó y siguió con SCRUM en el **tablero de Azure Boards** enlazado
    arriba.
 5. El **video resumen** y la **presentación oral** cierran la entrega explicando todo lo

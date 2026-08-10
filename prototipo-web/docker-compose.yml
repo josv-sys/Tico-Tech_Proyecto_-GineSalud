@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:18
+    container_name: ginesalud_db
+    environment:
+      POSTGRES_DB: ginesalud
+      POSTGRES_USER: ginesalud
+      POSTGRES_PASSWORD: ginesalud
+    ports:
+      # 5433 en el host para no chocar con un PostgreSQL nativo que ya pueda
+      # estar corriendo en el 5432 de esta máquina.
+      - "5433:5432"
+    volumes:
+      # Carga el esquema real (01_schema, 02_seed_data, 03_views_bi) definido
+      # en la Semana 3-5 del documento técnico, en orden, al crear el contenedor.
+      - ../sql:/docker-entrypoint-initdb.d:ro
+      - ginesalud_pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ginesalud -d ginesalud"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ginesalud_pgdata:

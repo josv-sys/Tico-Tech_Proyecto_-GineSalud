@@ -3,3 +3,8 @@
 Diseño Power BI y Power Apps GineSalud/uploads/
 Diseño Power BI y Power Apps GineSalud/ginesalud_bi_apps.html
 Diseño Power BI y Power Apps GineSalud/.thumbnail
+
+# Prototipo web local (entorno virtual y cache de Python)
+prototipo-web/backend/.venv/
+prototipo-web/backend/__pycache__/
+prototipo-web/backend/**/__pycache__/
